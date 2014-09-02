@@ -2,6 +2,8 @@
 namespace Sl\Module\Api\Controller;
 
 /**
+ * The implementation of OAuth2 protocol.
+ * 
  * Реализация OAuth2 протокола.
  * 
  * @todo Нужно бы переписать на исполдьзование сервисов и/или интерфейсов.
@@ -67,6 +69,7 @@ class Oauth extends \Zend_Controller_Action {
      */
     public function __construct(\Zend_Controller_Request_Abstract $request, \Zend_Controller_Response_Abstract $response, array $invokeArgs = array()) {
         parent::__construct($request, $response, $invokeArgs);
+        // Switch on ajax-context for oauth-actions
         // Включаем ajax-контекст для oauth-действий
         
         $this->_helper
@@ -86,6 +89,7 @@ class Oauth extends \Zend_Controller_Action {
     
     /**
      * 
+     * Sending of access_token-а
      * Передача access_token-а
      * @throws \Exception
      */
@@ -188,12 +192,19 @@ class Oauth extends \Zend_Controller_Action {
     }
     
     /**
-     * Проверка может имеет ли пользователь спрашивать что-то
+     * 
+     * Check if the user has right to ask something
+     * Set the rights in accordance with the roles of the user API
+     * 
+     * Проверка имеет ли пользователь право спрашивать что-то
      * Установка прав в соответствии с ролями пользователя API
      * 
      * @throws \Exception
      */
     protected function _checkDataRequest() {
+        // Gets user and authorize it if it is normal
+        // Gets access_token and checks it
+        
         // Достаем пользователя и авторизируем его, если он нормальный
         // Достаем access_token и проверяем его
         // @TODO Перенести куда-то подальше от контроллера ....
@@ -212,12 +223,14 @@ class Oauth extends \Zend_Controller_Action {
         if(!$token) {
             throw new \Exception('Wrong token value', self::EC_UNAUTHORIZED_CLIENT);
         }
+        // Get the client of API
         // Достаем клиента API
         $token = \Sl_Model_Factory::mapper($token)->findRelation($token, 'accesstokenclient');
         $client = $token->fetchOneRelated('accesstokenclient');
         if(!$client) {
             throw new \Exception('Can\'t find related API client for given token', self::EC_SERVER_ERROR);
         }
+        // Get system's user
         // Достаем пользователя системы
         $client = \Sl_Model_Factory::mapper($client)->findRelation($client, 'apiclientuser');
         $user = $client->fetchOneRelated('apiclientuser');
@@ -225,6 +238,8 @@ class Oauth extends \Zend_Controller_Action {
             throw new \Exception('Unexpected error when retrieve user of API client', self::EC_SERVER_ERROR);
         }
         
+        // Now authorize it and give the rights in accordance with the roles
+        //
         // Теперь авторизируем его и даем права в соответствии с ролями
         // 
         // @TODO Костыль, пока не применим новую модель авторизации
@@ -257,6 +272,7 @@ class Oauth extends \Zend_Controller_Action {
                 AclService::acl()->allow(null, $permission->resource_name, $permission->privilege);
             }
         }
+        // Write user in the repository so that others can use
         // Пишем пользователя в хранилище дабы другие смогли пользоваться
         \Zend_Auth::getInstance()->getStorage()->write($user);
         \Sl_Event_Manager::trigger(new \Sl\Module\Api\Event\Api('checkRequest', array(
@@ -265,6 +281,7 @@ class Oauth extends \Zend_Controller_Action {
     }
     
     public function getdataAction() {
+        // Check an access of user to the page
         // Проверка доступности пользователю этой странички
         $this->_checkDataRequest();
         
@@ -277,6 +294,7 @@ class Oauth extends \Zend_Controller_Action {
         // Но пока нет времени
         
         if($module === 'home' && $model === 'describe') {
+            // Description of API
             // Описание API
             $endpoints = array();
             $models_data = \Sl_Module_Manager::getAvailableModels();
@@ -327,6 +345,8 @@ class Oauth extends \Zend_Controller_Action {
     }
     
     /**
+     * Generating data in tabular form     
+     * 
      * Формирует данные в табличном виде
      * 
      * @param \Sl_Model_Abstract $model
@@ -337,12 +357,14 @@ class Oauth extends \Zend_Controller_Action {
             $request = $this->getRequest();
         }
         $fs = \Sl\Model\Identity\Fieldset\Factory::build($model, 'listview');
+        // Get the fields, uf they were sent in request
         // Достаем поля, если они передавались в запросе
         $request_fields = $request->getParam('fields', '');
         $fields_sep = preg_replace('/.+(__|,).+/', '$1', $request_fields);
         $fields = array_diff(explode($fields_sep, $request_fields), array(''));
         
         if(!$fields || !count($fields)) {
+            // If the fields were not sent by anyone, then we take it from config
             // Если поля никто не передавал - берем из конфига
             $fields = array();
             $fieldset_info = Config::read($model, 'fieldsets/_default', Config::MERGE_FIELDS)->toArray();
@@ -375,6 +397,10 @@ class Oauth extends \Zend_Controller_Action {
     }
     
     /**
+
+     * Processing of request from Billing
+     * oriented on changing some object
+     * 
      * Обработка запроса от Биллинга 
      * направленного на изменение какого-то объекта
      * 
@@ -450,6 +476,7 @@ class Oauth extends \Zend_Controller_Action {
     }
     
     /**
+     * Preventing the sending of incorrect data about exclusion
      * Предотвращение передачи неверных данных об исключении
      * 
      * @param \Exception $e
@@ -471,6 +498,9 @@ class Oauth extends \Zend_Controller_Action {
     }
     
     /**
+     * Returns the request object, free of data
+     * required for routing to API-action-s
+     * 
      * Возвращает объект запроса, очищенный от данных,
      * необходимых для роутинга на API-action-ы
      * 
