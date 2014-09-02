@@ -1,0 +1,48 @@
+<?php if($this->exception) { ?>
+    <div><h2><?php echo $this->exception->getMessage(); ?></h2><div><?php echo $this->exception->getTraceAsString(); ?></div></div>
+<?php  } else {  ?>
+    <script>
+	
+	<?=$this->calc_script?>
+	</script>
+    <?php if ($this->errors && count($this->errors)) { ?>
+        <div class="alert alert-error">
+            <button class="close" data-dismiss="alert" type="button">?</button>
+            <?php foreach ($this->errors as $key => $error) { ?>
+
+                <div><strong><?= $key; ?>: </strong> <?php
+        if (is_array($error)) {
+            foreach ($error as $error_text) {
+                if (is_array($error_text)) {
+                    foreach ($error_text as $error_subtext) {
+                        echo $error_subtext;
+                    }
+                } else {
+                    echo $error_text;
+                }
+            }
+        } else {
+            echo $error;
+        }
+                ?></div>
+    <?php } ?>
+        </div>
+    <?php } ?>
+<?php /* if($this->errors) { ?>
+    <div class='alert alert-error'>
+    	<button type="button" class="close" data-dismiss="alert">&times;</button>
+        <?php foreach($this->errors as $base_key => $errors) { ?>
+            <?php if (is_array($errors)): ?> 
+            	<? foreach($errors as $key=>$error) : ?>
+                	<div><?='<strong>'.$this->form->getElement($base_key)->getLabel().'</strong>: '. $error; ?></div>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <?=$errors?>	
+                <? endif; ?>
+        <?php } ?>        
+    </div>
+<?php } */ ?>
+
+<?php echo $this->form; ?>
+
+<?php } ?>

@@ -1,0 +1,44 @@
+<?php if($this->errors && count($this->errors)) { ?>
+    <div class="alert alert-error">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <?php foreach($this->errors as $key => $error) { ?>
+            <div><strong><?php if(is_string($key)) { ?><?php echo $key;?>: <?php } ?></strong> <?php  
+                if (is_array($error)) {
+                    foreach ($error as $error_text) {
+                        if (is_array($error_text)) {
+                            foreach ($error_text as $error_subtext) {
+                                echo $error_subtext;
+                            }
+                        } else {
+                            echo $error_text;
+                        }
+                    }
+                } else {
+                echo $error;
+                }
+             ?></div>
+        <?php } ?>
+    </div>
+<?php } ?>
+<?php if($this->success && count($this->success)) { ?>
+    <div class="alert alert-success">
+        <button class="close" data-dismiss="alert" type="button">×</button>
+        <?php foreach($this->success as $key => $message) { ?>
+            <div><strong><?php if(is_string($key)) { ?><?php echo $key;?>: <?php } ?></strong> <?php  
+                if (is_array($message)) {
+                    foreach ($message as $text) {
+                        if (is_array($text)) {
+                            foreach ($text as $subtext) {
+                                echo $subtext;
+                            }
+                        } else {
+                            echo $error_text;
+                        }
+                    }
+                } else {
+                    echo $message;
+                }
+             ?></div>
+        <?php } ?>
+    </div>
+<?php } ?>

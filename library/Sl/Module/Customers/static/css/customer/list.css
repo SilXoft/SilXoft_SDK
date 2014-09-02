@@ -1,0 +1,7 @@
+.datatable tr.status_1 td, 
+.datatable tr.status_1:hover td, 
+.table-striped tbody > tr.status_1:nth-child(2n+1) > td, 
+.table-striped tbody > tr.status_1:nth-child(2n+1):hover > td 
+{
+  /*background: none repeat scroll 0 0 #D9EDF7;*/
+}

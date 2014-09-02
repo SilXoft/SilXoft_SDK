@@ -1,0 +1,84 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+
+	ServerName devscrm.silencatech.com
+	ServerAlias test.cargo80.com www.test.cargo80.com
+
+	DocumentRoot /var/www/devscrm/public
+
+#	AliasMatch ^/(.+)/(.+)/(.+)\.(js|css)$ /var/www/logistic/html/library/Sl/Module/$1/static/$4/$2/$3.$4
+
+	<Directory /var/www/devscrm/public/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		#DirectoryRoot index.php
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	<Location /svn>
+		DAV svn
+		SVNPath /var/svn/logistic
+		AuthType Basic
+		AuthName "Logistic SVN"
+		AuthUserFile /var/svn/htpasswd
+		Require valid-user
+	</Location>
+
+	ErrorLog ${APACHE_LOG_DIR}/devscrm.silencatech.com/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/devscrm.silencatech.com/access.log combined
+
+</VirtualHost>
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+
+	ServerName scrm.silencatech.com
+	ServerAlias www.scrm.silencatech.com logistics.oleynik.org www.crm.cargo80.com crm.cargo80.com
+
+	DocumentRoot /var/www/logistic/html/public
+
+#	AliasMatch ^/(.+)/(.+)/(.+)\.(js|css)$ /var/www/logistic/html/library/Sl/Module/$1/static/$4/$2/$3.$4
+
+	<Directory /var/www/logistic/html/public/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		#DirectoryRoot index.php
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	DavLockDB "/var/git/DAVLockDB"
+
+	<Location /UvX3QoiRNm>
+                DAV svn
+                SVNPath /var/svn/logisticdep
+                AuthType Basic
+                AuthName "Logistic Dep SVN"
+                AuthUserFile /var/svn/htpasswd
+                Require valid-user
+        </Location>
+
+	Alias /fDv1Mku9JEFw /var/git/logistic
+
+	<Location /fDv1Mku9JEFw>
+		DAV on
+		AuthType Basic
+		AuthName "Git"
+		AuthUserFile /var/svn/htpasswd
+		Require valid-user
+	</Location>
+
+	ErrorLog ${APACHE_LOG_DIR}/scrm.silencatech.com/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/scrm.silencatech.com/access.log combined
+
+</VirtualHost>

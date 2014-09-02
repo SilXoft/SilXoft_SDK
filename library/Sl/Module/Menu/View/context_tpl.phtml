@@ -1,0 +1,35 @@
+<?php
+
+$html = array();
+$this->navigation()->setAcl(\Sl_Service_Acl::acl());
+
+$html[]='<div id="contextMenu"  class="dropdown clearfix">
+    
+<ul  class="dropdown-menu" role="menu"  aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px;">';
+
+foreach ($this->container as $page) {
+    //print_r(get_class_methods($page));
+    $data = $page->toArray();
+    if(!$this->navigation()->accept($page)) continue;
+	
+	$props = $page->GetCustomProperties();
+	$href = isset($props['href'])? $props['href']:$page->getHref();
+	
+    $active = $page->isActive();
+    /*@var $page Zend_Navigation_Page*/
+
+    $html[] = '<li class="'.trim($page->getClass().' ').($active?'active':'').'">';
+	    
+	$class_string = "";
+	$b_string = '';
+
+        
+        
+    $html[] = "<".$data['tag']." ".$class_string." class='".$data['class']."' field-id = '". ($data['field_id'] ? $data['field_id'] : 'id') ."' href='".$href.$data['param']."' data-url='".$href.$data['param']."' data-baseurl='".$href.$data['param']."'>".$this->translate($page->getLabel()).$b_string.'</'.$data['tag'].'>';
+
+    $html[] = "</li>";
+}
+
+$html[]='</ul></div>';
+
+echo join(PHP_EOL, $html);

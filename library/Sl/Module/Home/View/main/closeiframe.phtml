@@ -1,0 +1,10 @@
+<script>    
+        var relation_id = '<?=$this->obj_id?>';
+        var relation_tostring = '<?=$this->obj_tostring?>';
+        var relation_url = '<?=$this->obj_edit_url?>';
+        var relation_data = '<?=json_encode($this->obj_data)?>';
+        var module_name ='<?=$this->module_name?>';
+        var model_name ='<?=$this->model_name?>';
+	window.parent.closeIframeFunction(relation_id, relation_tostring, relation_url, relation_data, module_name, model_name);
+	
+</script>

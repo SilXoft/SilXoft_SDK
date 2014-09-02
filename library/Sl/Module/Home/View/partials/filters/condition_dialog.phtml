@@ -1,0 +1,38 @@
+<div style="display: none;" class="modal hide fade" id="condition_dialog">
+    <div class="modal-header">
+        <h3><?php echo $this->translate('Добавление сравнения'); ?></h3>
+    </div>
+    <div class="modal-body">
+        <strong>
+            <?php echo $this->translate('Поле:'); ?>
+            <label role="field">-</label>
+        </strong>
+        <select role="compare"></select>
+        <div style="margin-left: 10px; display: inline-block;" role="value" class="control-group"></div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn comparison-cancel btn-warning">Cancel</a>
+        <a href="#" class="btn comparison-ok btn-primary">Ok</a>
+    </div>
+    <div style="display: none">
+        <?php /*foreach(\Sl\Model\Identity\Field\Factory::getAvailableTypes() as $type) { ?>
+            <div data-type="type" data-value="<?php echo $type; ?>"><?php
+                echo implode(';', array_map(function($el){ return is_array($el)?implode(';', $el):$el; }, \Sl\Model\Identity\Fieldset\Comparison\Factory::getAvailableByType($type)));
+            ?></div>
+        <?php }*/ ?>
+        <?php /*foreach(\Sl\Model\Identity\Fieldset\Comparison\Factory::getAvailableComparisons() as $k=>$v) { ?>
+            <?php echo \Sl\Serializer\Serializer::renderFieldComparison($v, $k); ?>
+            <?php/* if(is_array($v)) { ?>
+                <?php foreach($v as $ext=>$item) { ?>
+                    <div data-type="comp" data-extension="<?php echo $ext; ?>" data-name="<?php echo $item; ?>" data-value="<?php echo $this->translate('field_comparison_'.$item); ?>">
+                        <input type="text" />
+                    </div>
+                <?php } ?>
+            <?php } else { ?>
+                <div data-type="comp" data-name="<?php echo $v; ?>" data-value="<?php echo $this->translate('field_comparison_'.$v); ?>">
+                    <input type="text" />
+                </div>
+            <?php } ?>
+        <?php }*/ ?>
+    </div>
+</div>

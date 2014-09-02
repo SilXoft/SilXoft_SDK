@@ -1,0 +1,46 @@
+/**********************
+Context Menu
+**********************/
+
+.ui-context .dropdown-menu > li > a {
+    padding-left: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+ul.closed {
+    display: none;
+}
+
+#config ul {
+    margin-left: 20px;
+}
+
+#config li .name {
+    font-weight: bold;
+}
+
+#config li.seleted {
+    border-color: green;
+}
+
+.collapsible {
+    cursor: pointer;
+}
+
+li .main[data-type="module"] {
+    color: blue;
+}
+
+li .main[data-type="model"] {
+    color: green;
+}
+
+li .main[data-type="section"],
+li .main[data-type="subection"] {
+    color: orange;
+}

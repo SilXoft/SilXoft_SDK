@@ -1,0 +1,30 @@
+<h2>Управление ресурсами</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Is active</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if($this->resources) { ?>
+            <?php foreach($this->resources as $type=>$resources) { ?>
+                <?php if(count($resources)) { ?>
+                    <tr>
+                        <th colspan="4"><?php echo $type; ?></th>
+                    </tr>
+                    <?php foreach($resources as $resource) { ?>
+                        <tr>
+                            <td><?php echo $resource->getId(); ?></td>
+                            <td><?php echo $resource->getName(); ?></td>
+                            <td><span class="editable"><?php echo $resource->getDescription(); ?></span></td>
+                            <td><?php echo $resource->getActive()?'+':'-'; ?></td>
+                        </tr>
+                    <?php } ?>
+                <?php } ?>
+            <?php } ?>
+        <?php } ?>
+    </tbody>
+</table>

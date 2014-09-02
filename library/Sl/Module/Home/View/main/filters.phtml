@@ -1,0 +1,76 @@
+<div class='table-controls-wrapper table-wrapper' data-alias="<?php echo $this->model_alias; ?>">
+    <input type ="hidden" class="fixed_columns" value ="<?php echo count($this->fieldset->getFields('fixed'))?>">
+    <div class="fields_to_return" data-fields="<?php echo $this->escape(json_encode($this->fields_to_return)); ?>"></div>
+    <div class="fieldsinfo">
+        <?php foreach($this->fieldset->getFields() as $field) { ?>
+            <span <?php echo $field->listview('field-attrs'); ?>></span>
+        <?php } ?>
+    </div>
+    <div class="order_data"
+         <?php foreach($this->order_data as $k=>$v) { ?>
+         data-<?php echo $k; ?>="<?php echo $v; ?>"
+         <?php } ?>
+         ></span>
+    <div class="selectedinfo">
+        <?php foreach($this->selected as $id) { ?>
+            <span data-id="<?php echo $id; ?>"></span>
+		<?php } ?>
+    </div>
+    <div class ="comps_info">
+        <?php foreach($this->comps as $comp) { ?>
+        <span data-field="<?php echo $comp['field']?>" data-type="<?php echo $comp['type']; ?>" data-value="<?php echo $this->escape($comp['value']); ?>"></span>
+        <?php } ?>
+    </div>
+    <fieldset class='selected_models_wrapper panel panel-info hidden'>
+        <legend class="panel-heading"><?= $this->translate('Выбранные'); ?>: <span class='selected_els_count badge' title='<?=$this->translate('Показать/спрятать')?>'>0</span> 
+            <? $this->legend_buttons = is_array($this->legend_buttons) ? $this->legend_buttons : array();
+            \Sl_Event_Manager::trigger(new \Sl_Event_View('listViewTableLegendButtons', array('view' => $this, 'object' => $this->fieldset->getModel())));
+            ?>
+            <span class='groupbtn input-append'>
+                <?
+                foreach ($this->legend_buttons as $button) {
+                    echo $button;
+                }
+                ?> 
+            </span>    	    
+        </legend>
+        <div class='selected_models panel-body'></div>
+    </fieldset>
+    <input type="hidden" class="switch_archived" value="-1" />
+    <input type="hidden" data-role="popup_view" value="<?php echo (int) $this->popup_view; ?>" />
+    <input type="hidden" data-role="export_confirm_limit" value="<?php echo intval(\Sl_Service_Settings::value('EXPORT_CONFIRM_LIMIT')); ?>">
+	<?php \Sl_Event_Manager::trigger(new \Sl_Event_View('beforeListViewTable', array('view' => $this, 'object' => $this->fieldset->getModel()))); ?>
+    <div class="filters_data">
+        <?php foreach($this->filters as $name=>$filter) { ?>
+            <span
+                data-name="<?php echo $name; ?>"
+                data-label="<?php echo strtoupper($filter['name']); ?>"
+                data-title="<?php echo $this->escape($filter['description']); ?>"
+                data-active="<?php echo $filter['active']; ?>"
+                <?php if(isset($filter['filter']['comps']['_user']['comps']['_custom']['comps'])) { ?>
+                    data-filters="<?php echo $this->escape(json_encode($filter['filter']['comps']['_user']['comps']['_custom']['comps'])); ?>"
+                <?php } ?>
+                ></span>
+        <?php } ?>
+    </div>
+	<div class="filter_selector"></div>
+	<div class="clerafix"></div>
+	<table class="table datatable table-bordered table-striped">
+        <thead>
+            <tr class="search">
+                <?php foreach($this->fieldset->getFields('render') as $field) { ?>
+                    <th data-name="<?php echo $field->getName(); ?>" class="<?php echo 'type_'.$field->getType(); ?>"><?php echo $field->listview('th-search'); ?></th>
+                <?php } ?>
+            </tr>
+            <tr class='titles'>
+                <?php  foreach($this->fieldset->getFields('render') as $field) { ?>
+                <th <?php if($field->getOption('calculate')) { echo ' data-calc="'.$field->getOption('calculate').'" '; }; ?> data-name="<?php echo $field->getName(); ?>"><?php echo $field->listview('th'); ?></th>
+                <?php } ?>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <?php \Sl_Event_Manager::trigger(new \Sl_Event_View('afterListViewTable', array('view' => $this, 'object' => $this->fieldset->getModel()))); ?>
+</div>

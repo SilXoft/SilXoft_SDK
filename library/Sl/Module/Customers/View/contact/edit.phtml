@@ -1,0 +1,49 @@
+<?php  if($this->exception) { ?>
+    <div><h2><?php echo $this->exception->getMessage(); ?></h2><div><?php echo $this->exception->getTraceAsString(); ?></div></div>
+<?php  } else {  ?>
+    <script>
+	
+	<?=$this->calc_script?>
+	</script>
+        
+<?php  if($this->errors) { 
+      echo $this -> partial('errors.phtml', array('errors'=>$this->errors));
+    }
+?>
+
+<form class='<?=trim(str_replace('form-horizontal', '', $this->form->getAttrib('class'))); ?>' action='<?=$this->form->getAction()?>' method='<?=$this->form->getMethod()?>'>
+
+<div class="row-fluid">
+    <span class="span3">
+        <?=\Sl_Form_Factory::elementToString($this->form, 'name');?>
+        <?=\Sl_Form_Factory::elementToString($this->form, 'post');?>
+        <?=\Sl_Form_Factory::elementToString($this->form, 'description');?>
+        
+    </span>    
+    <span class="span3">
+        <?=\Sl_Form_Factory::subformToString($this->form, 'modulerelation_contactemail');?>
+    </span>    
+        <span class="span3">
+        <?=\Sl_Form_Factory::subformToString($this->form, 'modulerelation_contactphone');?>
+    </span>    
+</div>
+
+
+<div class="row-fluid">
+	<span class="span4">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'cancel');?>
+		<?=\Sl_Form_Factory::elementToString($this->form, 'duplicate');?>
+                <?=\Sl_Form_Factory::displaygroupToString($this->form, 'print');?>
+		<?=\Sl_Form_Factory::elementToString($this->form, 'save');?>
+
+	</span>
+	
+</div>
+
+	
+	
+	
+
+
+</form>  
+<?php } //echo $this->form; } ?>

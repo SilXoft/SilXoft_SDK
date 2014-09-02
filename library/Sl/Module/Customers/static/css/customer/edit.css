@@ -1,0 +1,170 @@
+/*
+#name {
+    width: 230px;
+}
+*/
+.modulerelation_customeremails {
+    width: 225px;
+}
+
+#modulerelation_customeridentifiercustomer_names{
+	width:177px;
+}
+
+.modulerelation_customerphones {
+    width: 225px;
+}
+/*
+#modulerelation_customerballance_names {
+    width: 164px;
+}
+*/
+/*
+#modulerelation_customeridentifiercustomer_names {
+    width: 166px;
+}
+*/
+#create,
+#passport_date {
+    width: 178px;
+}
+/*
+#last_name,
+#first_name,
+#middle_name,
+#skype,
+#qq,
+#sender_phone,
+#post_code,
+#company_name,
+#web_site,
+#passport,
+#address,
+#contact {
+    width: 165px;
+}
+*/
+
+#modulerelation_stockcustomer_names,
+#modulerelation_customercountry_names,
+#modulerelation_customercity_names,
+#modulerelation_customercustsource_names,
+#modulerelation_customercustomergroup_names,
+#modulerelation_customerdealer_names,
+#modulerelation_customerusersystem_names
+
+{
+    width: 148px;
+}
+/*
+#modulerelation_customercountry_names,
+#modulerelation_customerdealer_names {
+    width: 94px;
+}
+*/
+/*
+#modulerelation_customerusersystem_names {
+    width: 108px;
+}
+*/
+/*
+#modulerelation_customercity_names,
+#modulerelation_customercustsource_names {
+    width: 93px;
+}
+*/
+/*
+#status {
+	width:175px;
+}
+*/
+
+[for="is_dealer"] > .controls {
+    width: 100px;
+}
+
+#is_dealer,
+#notify_sms,
+#notify_email,
+#notify_dealer {
+    width: 15px;
+    margin-bottom: 7px;
+}
+
+[id^="modulerelation_customerphones"],
+[id^="modulerelation_customeremails"] {
+    width: 176px !important;
+}
+
+#description {
+    width: 686px;
+}
+
+.no-float .control-group {
+    clear: both;
+    display: inline-block;
+    
+}
+.no-float label
+{
+    float: right;
+    display: block;
+}
+.no-float label[for="notify_sms"]
+{
+    width: 40px;
+}
+.no-float label[for="notify_dealer"]
+{
+    width: 122px;
+}
+.no-float label[for="notify_email"]
+{
+    width: 40px;
+}
+.no-float label[for="is_dealer"]
+{
+    width: 122px;
+}
+
+.no-float .control-group:nth-child(2n+1){
+   width: 60px;
+}
+
+/* четная строка таблицы класса stripy */
+.no-float .control-group:nth-child(2n){
+   width: 140px;
+}
+
+.item:not(:first-child) {
+    padding: 6px 0px !important;
+}
+
+.listform div.wellform {
+	width:935px;
+	
+}
+
+label[for="modulerelation_customercontact_gr"]{
+	float:left;
+	margin-right:10px;
+	margin-top:5px;
+}
+
+form.customer div.row-fluid .span3
+{
+    width: 210px;
+}
+
+.control-group {
+    margin-bottom: 0;
+}
+label
+{
+    margin-bottom: 0;
+    font-size: 14px;   
+}
+.page-header
+{
+    display: none;
+}

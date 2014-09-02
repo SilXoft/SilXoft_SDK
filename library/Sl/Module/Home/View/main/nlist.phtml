@@ -1,0 +1,8 @@
+<?php  if($this->exception) { ?>
+    <div><h2><?php echo $this -> exception -> getMessage(); ?></h2><div><?php echo $this -> exception -> getTraceAsString(); ?></div></div>
+<?php } else { ?>
+	<? /*if (strlen($this->title)):?> <h3><?=$this -> title ?></h3> <? endif; */?>  
+	<?if (isset($this->content))
+		echo $this->content;
+	?>
+<?php }  ?>

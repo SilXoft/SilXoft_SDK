@@ -1,0 +1,62 @@
+<?php
+$device_device = new \Sl\Service\DetectDevice;
+
+$html = array();
+$this->navigation()->setAcl(\Sl_Service_Acl::acl());
+
+foreach ($this->container as $page)
+{
+  	$subhtml='';
+    if(!$this->navigation()->accept($page)) continue;
+	if (!$page->getVisible()) continue;
+	if (!empty($page->pages)) {
+            
+        \Sl_Event_Manager::trigger(new \Sl_Event_Navigatepage('editPage', array('page'=>$page)));    
+        $subhtml =  trim($this->partial('sidemenu_li.phtml', array('page' => $page, 'navigation'=>$this->navigation())));
+       
+    }
+	
+	$props = $page->GetCustomProperties();
+	$href = isset($props['href'])? $props['href']:$page->getHref();
+	
+	if (!strlen($subhtml) && !strlen(trim(str_replace('#', '', $href)))) continue; 
+	$sublabel = strlen($subhtml).' '.$href;
+    $html[]='<ul class="nav">';	
+    $active = $page->isActive();
+
+    /*@var $page Zend_Navigation_Page*/
+    if($page->hasPages()) {
+        foreach($page->pages as $p) {
+            if($p->isActive()) $active = true;
+        }
+    }
+
+    $html[] = '<li class="dropdown '.trim($page->getClass().' ').($active?'active':'').'">';
+	
+    $class_string = count($subhtml)?"class=\"dropdown-toggle\" data-toggle=\"dropdown\" ":"";
+	$b_string = count($subhtml)?"<b class=\"caret\"></b>":'';
+    
+    $icon = false;
+    if($icon = trim($page->get('icon').'')) {
+        $icon = '<i class="icon-white icon-'.$icon.'"></i>&nbsp;';
+    }
+    $props = $page->getCustomProperties();
+    $label = ((isset($props['nolabel']) && $props['nolabel']) || $device_device->isMobile())?'':$this->translate($page->getLabel());
+    
+	$html[] = "<a ".$class_string." href='".$href."' data-id='".$page->getId()."'>".($icon?$icon:'').$label.$b_string.'</a>';
+	
+    
+    
+    $html[] =  $subhtml;
+   
+
+    $html[] = "</li>";
+	$html[]='</ul>';
+   /* $html[]='<!--';
+    $html[] =  join(PHP_EOL, $subhtml);
+    $html[]='-->'; */
+}
+
+echo join(PHP_EOL, $html);
+
+?>

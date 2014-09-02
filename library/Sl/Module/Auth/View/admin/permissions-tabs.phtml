@@ -1,0 +1,95 @@
+
+<? if (is_array($this->reses) && count($this->reses)): ?>
+    <div class="sub_tabs">
+        <ul>
+            <?php foreach($this->reses as $res_name=>$resources) { ?>
+                <li><a href="#subres-<?php echo $res_name; ?>"><?php echo $res_name; ?></a></li>
+            <?php } ?>
+        </ul>
+        <?php foreach($this->reses as $res_name=>$resources) { ?>
+        <div id="subres-<?php echo $res_name; ?>">
+    <?$cols = (is_array($this -> roles) && count($this -> roles)) ? count($this -> roles) : 1; ?>
+	<table class='table-striped table-bordered'>
+		<thead>
+			<tr>
+				<th></th>
+				<th <?=($cols > 1 ? ' colspan =' . $cols : '') ?>><?=$this -> translate('Роли') ?></th>
+			</tr>
+			<tr>
+				<th><?=$this -> translate('Ресурсы') ?></th>
+				<?if(is_array($this->roles) && count($this->roles)):?>
+					<?foreach($this->roles as $role):?><th><?=$role -> getName() ?></th><?endforeach; ?>
+				<?else: ?>
+					<th><?=$this -> translate('Роли не определены') ?></th>
+				<?endif; ?>
+			</tr>
+		</thead>
+		<tbody>
+			<?foreach($resources as $resource):?>
+				<tr>
+					<th style='text-align: left;'><?=$resource ?></th>
+					<?if(is_array($this->roles) && count($this->roles)):?>
+						<?foreach($this->roles as $role):?>
+							<td>
+								<?if (in_array($resource->fetchType(), array(\Sl_Service_Acl::RES_TYPE_MVC, \Sl_Service_Acl::RES_TYPE_CUSTOM))):?>
+                                    <? $checkbox_array = array(
+                                            'class' => $resource -> fetchType() . '_permission',
+                                            'id' => 'res-' . $resource -> getId() . '_role-' . $role -> getId()
+                                        );
+                                        $checkbox_array['checked'] = $this->mega_acl->isAllowed($role->getName(), $resource->getName(), \Sl_Service_Acl::PRIVELEGE_ACCESS);
+                                        echo $this -> formCheckbox('', '1'/*\Sl_Service_Acl::PRIVELEGE_ACCESS*/, array(
+                                            'class' => $resource -> fetchType() . '_permission',
+                                            'id' => 'res-' . $resource -> getId() . '_role-' . $role -> getId(),
+                                            'checked' => $this->mega_acl->isAllowed($role->getName(), $resource->getName(), \Sl_Service_Acl::PRIVELEGE_ACCESS)
+                                        ));
+
+                                    ?>
+                                    <!--<input type="checkbox" <?php ?>>-->
+                                   <? /* <label for='res-<?=$resource -> getId() ?>_role-<?=$role -> getId() ?>'><?=$this -> translate('access') ?></label> */ ?>
+
+								<?else:
+                                    if($this->mega_acl->isAllowed($role->getName(), $resource->getName(), \Sl_Service_Acl::PRIVELEGE_UPDATE)) {
+                                        $radio_value = \Sl_Service_Acl::PRIVELEGE_UPDATE;
+                                    } elseif($this->mega_acl->isAllowed($role->getName(), $resource->getName(), \Sl_Service_Acl::PRIVELEGE_READ)) {
+                                        $radio_value = \Sl_Service_Acl::PRIVELEGE_READ;
+                                    } else {
+                                        $radio_value = \Sl_Service_Acl::PRIVILEGE_DENY;
+                                    }
+                                    
+                                    $privilegies_array = array(
+                                        \Sl_Service_Acl::PRIVILEGE_DENY => 'n/a', 
+                                        \Sl_Service_Acl::PRIVELEGE_READ => 'read',
+                                        \Sl_Service_Acl::PRIVELEGE_UPDATE => 'update'
+                                    );
+                                    
+                                    foreach($privilegies_array as $k=>$v) {
+                                        ?>
+                                        <label for="<?php echo 'res-'.$resource->getId().'_role-'.$role->getId(); ?>">
+                                            <input type="radio" name="<?php echo 'res-'.$resource->getId().'_role-'.$role->getId(); ?>" id="<?php echo 'res-'.$resource->getId().'_role-'.$role->getId().'-'.$k; ?>" value="<?php echo $k; ?>" <?php if($k == $radio_value) { ?>checked="checked"<?php } ?> class="obj_permission">
+                                            <?php echo $v; ?>
+                                        </label>
+                                        <?php
+                                    }
+                                    
+                                    /*echo $this->formRadio('res-'.$resource->getId().'_role-'.$role->getId(), $radio_value
+                                                          , array('class'=>$resource->fetchType().'_permission'), 
+                                                               array(\Sl_Service_Acl::PRIVILEGE_DENY => 'n/a', 
+                                                                      \Sl_Service_Acl::PRIVELEGE_READ => 'read',
+                                                                      \Sl_Service_Acl::PRIVELEGE_UPDATE => 'update'
+                                                                      ), '<div class="clearfix"></div>');*/
+
+                                    endif;
+								?>
+							</td>
+						<?endforeach; ?>
+					<?else: ?>
+						<td><?=$this -> translate('Роли не определены') ?></td>
+					<?endif; ?>
+				</tr>
+			<?endforeach; ?>
+		</tbody>
+	</table>
+    </div>
+    <?php } ?>
+    </div>
+<? endif; ?>

@@ -1,0 +1,28 @@
+<?php if ($this->field->getSearchable()) { ?>
+    <?php
+        if($this->field->isRelated()) {
+            $alias_data = array_pop(\Sl\Service\Alias::describeAlias($this->field->relationAlias(), $this->field->getModel(), true));
+            try {
+                $related_model = \Sl\Service\Helper::getModelByAlias($alias_data['dest']);
+                if($listname = $related_model->ListsAssociations($this->field->cleanName())) {
+                    $options = \Sl\Service\Lists::getList($listname);
+                } else {
+                    $distincts = array_map(array($this, 'escape'), \Sl_Model_Factory::mapper($related_model)->fetchDistinctValues($this->field->cleanName()));
+                    $options = array_combine($distincts, $distincts);
+                }
+            } catch(\Exception $e) {
+                die($e->getMessage());
+            }
+        } else {
+            if($this->field->getOption('options')) {
+                $options = $this->field->getOption('options');
+            }
+        }
+        $options['-1'] = $this->translate('Все');
+    ?>
+    <select data-role="simple">
+        <?php foreach ($options as $k=>$option) { ?>
+            <option <?php if($k == '-1') { echo 'selected'; }?> value="<?php echo $k; ?>"><?php echo $option; ?></option>
+        <?php } ?>
+    </select>
+<?php } ?>

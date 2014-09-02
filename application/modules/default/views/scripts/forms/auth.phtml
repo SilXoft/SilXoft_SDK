@@ -1,0 +1,22 @@
+<form action='<?php echo $this->element->getAction(); ?>' method="<?php echo $this->element->getMethod(); ?>">
+    <fieldset>
+        <section>
+            <label for="email"><?php echo $this->element->email->getLabel(); ?></label>
+            <div>
+                <input type="text" id="email" value="<?php echo $this->element->email->getValue(); ?>" name="email" autofocus />
+            </div>
+        </section>
+        <section>
+            <label for="password"><?php echo $this->element->password->getLabel(); ?></label>
+            <div>
+                <input type="password" id="password" value="<?php echo $this->element->password->getValue(); ?>" name="password" />
+            </div>
+        </section>
+        <section>
+            <div>
+                <button class="fr"><?php echo $this->element->submit->getLabel(); ?></button>
+            </div>
+        </section>
+    </fieldset>
+</form>
+ 

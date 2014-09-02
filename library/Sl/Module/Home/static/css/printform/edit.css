@@ -1,0 +1,58 @@
+textarea {
+    width: 700px;
+    height: 500px;
+}
+
+.printform_helper{
+   
+    height:510px;
+}
+
+  .content_templates{
+    overflow-y: scroll;
+    height:475px;
+    
+}
+.printform_helper .inline{
+    width : 230px;
+   
+}
+
+.printform_helper .inline:hover{
+    width : 230px;
+    color:red;
+}
+
+.printform_helper .inline .template{
+    font-size: 70%;
+    width: 70px;
+    max-width: 70px;
+    height: 21px;
+    max-height: 21px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.printform_helper .inline .name{
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
+   
+}
+
+.printform_helper .inline a.name:hover{
+   
+    
+   
+}
+
+.tittle_template {
+    text-align: center;
+    background-color: #f5f5f5;
+     margin-bottom: 10px;
+    
+}
+
+#cke_data{
+    width:700px;
+}

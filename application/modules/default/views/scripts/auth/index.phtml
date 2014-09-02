@@ -1,0 +1,8 @@
+<div class="login">
+    <img src="/images/logo.jpg" width="150" height="50"/><br />
+    <?php echo $this->form; ?>
+    <?php echo $this->test; ?>
+    <?php if($this->message) { ?>
+    <div class="warning red"><?php echo implode('<br />', $this->message); ?></div>
+    <?php } ?>
+</div>

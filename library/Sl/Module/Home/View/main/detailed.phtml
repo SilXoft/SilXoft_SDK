@@ -1,0 +1,16 @@
+<?php if($this->exception) { ?>
+    <div><h2><?php echo $this->exception->getMessage(); ?></h2><div><?php echo $this->exception->getTraceAsString(); ?></div></div>
+<?php } else { if (isset($this->url)){
+    ?><div class="buttons_wrapper">
+<? if ($this->editable): ?>
+<button class="btn btn-primary buttons_wrapper go-edit pull-right" data-url='<?=$this->url?>' title='<?=$this->translate('Редактировать')?>'><i class='icon-edit icon-white'></i></button>            
+<? endif; ?>
+</div><?}?>
+    <?php echo $this->content; ?>
+   <? if (isset($this->url)){?>
+    <div class="buttons_wrapper">
+  <? if ($this->editable): ?>
+    <button class="btn btn-primary buttons_wrapper go-edit pull-right" data-url='<?=$this->url?>' title='<?=$this->translate('Редактировать')?>'><i class='icon-edit icon-white'></i></button>            
+  <? endif; ?>
+</div><?}?>
+<?php } ?>

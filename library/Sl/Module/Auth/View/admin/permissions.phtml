@@ -1,0 +1,49 @@
+<button id="rebuild" class="btn btn-warning pull-right">Обновить права</button>
+<h2><?php echo $this->translate('Права доступа'); ?></h2>
+<br />
+<div>
+    <div class="tabs acltabs" id="main" title="Права доступа">
+        <ul>
+            <li><a href="#modules_forms">Формы</a></li>
+            <li><a href="#modules_pages">Страницы</a></li>
+            <li><a href="#modules_models">Модели</a></li>
+            <li><a href="#modules_customs">Персонализация</a></li>
+        </ul>
+        <div id="tabs-1">
+            <div class="tabs" id="modules_forms" title="Формы по модулям">
+                <ul>
+                    <?php foreach($this->modules as $module) { ?>
+                        <li><a href="/auth/admin/formsmain/m/<?php echo $module->getName(); ?>"><?php echo $module->getName(); ?></a></li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+        <div id="tabs-2">
+            <div class="tabs" id="modules_pages" title="Страницы по модулям">
+                <ul>
+                    <?php foreach($this->modules as $module) { ?>
+                        <li><a href="/auth/admin/pagesmain/m/<?php echo $module->getName(); ?>"><?php echo $module->getName(); ?></a></li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+        <div id="tabs-3">
+            <div class="tabs" id="modules_models" title="Поля объектов по модулям">
+                <ul>
+                    <?php foreach($this->modules as $module) { ?>
+                        <li><a href="/auth/admin/modelsmain/m/<?php echo $module->getName(); ?>"><?php echo $module->getName(); ?></a></li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+        <div id="tabs-4">
+            <div class="tabs" id="modules_customs" title="Персонализация по модулям">
+                <ul>
+                    <?php foreach($this->modules as $module) { ?>
+                        <li><a href="/auth/admin/customsmain/m/<?php echo $module->getName(); ?>"><?php echo $module->getName(); ?></a></li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

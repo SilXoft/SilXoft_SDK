@@ -1,0 +1,9 @@
+<?php if($this->added) { ?>
+    <div class="added blue"><h3>Added</h3><br /><?php echo implode('<br />', $this->added); ?></div>
+<?php } ?>
+<?php if($this->deleted) { ?>
+    <div class="deleted blue"><h3>Deleted</h3><br /><?php echo implode('<br />', $this->deleted); ?></div>
+<?php } ?>
+<?php if($this->errors) { ?>
+    <div class="errors blue"><h3>Errors</h3><br /><?php echo implode('<br />', $this->errors); ?></div>
+<?php } ?>

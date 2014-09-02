@@ -1,0 +1,55 @@
+<?  $pages = false; 
+    foreach ($this->page->pages as $subpage) {
+        if($this->navigation->accept($subpage) ) {
+            $pages = true;
+            break;   
+        }
+        
+    }            
+    if (!$pages) return;
+
+    $html = array();
+
+        foreach ($this->page->pages as $subpage) {
+           // print_r(array(method_exists($subpage, 'getParams'),$subpage));
+           // die;    
+            if(!$this->navigation->accept($subpage) ) {
+                
+                continue;
+            }
+            
+            $addition_icon = false;  
+            
+            if (count($subpage->pages) == 1){
+              $button = current($subpage->pages);
+              if($this->navigation->accept($button)) {             
+              
+                 $params = $button->toArray();
+                 if ($params['image']){
+                     $addition_icon= "<a class ='".$button->getClass()."' title='".$button->getTitle()."' href='".($button->getHref()?$button->getHref():'#')."'>".$params['image'].'</a>';
+                 } 
+                         
+              }         
+                           
+            } 
+          
+            $submenu = (!$addition_icon && $subpage->pages)? $this->partial('sidemenu_li.phtml', array('level' => $this->level+1, 'page'=>$subpage, 'navigation'=>$this->navigation)): '';
+            $s = !$addition_icon && strlen($submenu);
+            if (!strlen($submenu) && !trim(str_replace('#','',$subpage->getHref()))) continue;
+            
+            $html[]=" <li ";
+            if($subpage->getClass() || $s) {  
+                $html[]="class='".$subpage->getClass();
+                if ($s) $html[]=" dropdown-submenu ";
+                $html[]="' ";
+            }     
+             $html[]= "><a href='".($subpage->getHref()?$subpage->getHref():'#')."' ";
+             $html[]=" data-id='".$subpage->getId()."' >";
+              
+             $props = $subpage->getCustomProperties();
+             $label = (isset($props['nolabel']) && $props['nolabel'])?'':$this->translate($subpage->getLabel());             
+             $html[]= $label."</a>".$submenu.$addition_icon."</li>";
+        } 
+        
+     $str = trim(implode('',$html));
+     if (strlen($str)) echo  '<ul class="dropdown-menu">'.$str."</ul>";

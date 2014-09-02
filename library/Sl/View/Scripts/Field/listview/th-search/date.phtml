@@ -1,0 +1,15 @@
+<?php if($this->field->getSearchable()) { ?>
+    <?php if($this->field->getOption('concrete')) { ?>
+            <input type="text" class="fieldtype-date" value="" />
+    <?php }  else { ?>
+            <div class="wrapper date">
+                <i class="icon icon-calendar">
+                    <input type="text" data-role="fake" name="<?php echo $this->field->getName(); ?>_start" class="fieldtype-date" />
+                </i>&nbsp;
+                <i class="icon icon-calendar">
+                    <input type="text" data-role="fake" name="<?php echo $this->field->getName(); ?>_end" class="fieldtype-date" />
+                </i>
+                <input type="hidden" data-role="real" data-name="<?php echo $this->field->getName(); ?>" value="s" />
+            </div>
+    <?php } ?>
+<?php } ?>

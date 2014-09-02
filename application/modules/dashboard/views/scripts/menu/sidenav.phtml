@@ -1,0 +1,4 @@
+<?php if($this->menu) { ?>
+    <?php $this->navigation()->menu($this->menu)->setPartial(array('sidemenu.phtml', 'default')); ?>
+    <?php echo $this->navigation()->menu($this->menu)->render(); ?>
+<?php } ?>

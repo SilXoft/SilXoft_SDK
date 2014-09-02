@@ -1,0 +1,22 @@
+ .mailbody {
+ margin: 0px 0px 10.5px;
+ width: 350px;
+height: 150px;   
+    
+}
+ 
+.sendprintform {
+ width: 90px;
+height: 30px; 
+font-size: 15px;
+}
+
+.cancelprintform {
+width: 90px;
+height: 30px; 
+font-size: 15px;
+}
+
+.useremail{
+ width: 350px;  
+}

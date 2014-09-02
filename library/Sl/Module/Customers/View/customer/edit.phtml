@@ -1,0 +1,195 @@
+<?php  if($this->exception) { ?>
+    <div><h2><?php echo $this->exception->getMessage(); ?></h2><div><?php echo $this->exception->getTraceAsString(); ?></div></div>
+<?php  } else {  ?>
+    <script>
+	
+	<?=$this->calc_script?>
+	</script>
+        
+<?php  if($this->errors) { 
+      echo $this -> partial('errors.phtml', array('errors'=>$this->errors));
+    }
+?>
+
+<form class='<?=trim(str_replace('form-horizontal', '', $this->form->getAttrib('class'))); ?>' action='<?=$this->form->getAction()?>' method='<?=$this->form->getMethod()?>'>
+		<?=\Sl_Form_Factory::elementToString($this->form, 'id');?>
+		<?=\Sl_Form_Factory::elementToString($this->form, 'form_after_save_url');?>
+<div class="row-fluid">
+	<span class="span3">
+
+		<?=\Sl_Form_Factory::elementToString($this->form, 'name');?>
+	</span>
+	
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customerballance');?>
+	</span>
+	<span class="span3">
+	    <?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customercustomergroup');?>
+		
+		
+	</span>
+        <span class="span3">
+                <?=\Sl_Form_Factory::elementToString($this->form, 'status');?>
+        </span>    
+    
+    
+</div>
+
+
+<div class="row-fluid">
+    <span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customeridentifiercustomer');?>
+	</span>
+    
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'last_name');?>
+	</span>
+	
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'first_name');?>
+	</span>
+	
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'middle_name');?>
+	</span>
+    
+    
+</div>
+
+<div class="row-fluid">
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_stockcustomer');?>
+		
+	</span>
+	
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customercountry');?>
+	</span>
+	
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customercity');?>
+	</span>
+    
+    <span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customercustsource');?>
+	</span>
+</div>
+<div class="row-fluid">
+
+    <span class="span10 listform">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customercontact');?>
+	</span>	
+
+    
+    
+</div>    
+<hr style="width: 780px; padding: 0px; margin: 5px 0px 14px;" />
+<div class="row-fluid">
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'company_name');?>
+		
+	</span>
+    
+	
+    <span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'address');?>
+	</span>
+	
+    <span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'skype');?>
+	</span>
+	
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'passport');?>
+	</span>
+	
+    
+</div>
+
+<div class="row-fluid">
+	
+    <span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'web_site');?>
+	</span>
+    
+	
+    <span class="span3">
+	<?=\Sl_Form_Factory::elementToString($this->form, 'post_code');?>
+	</span>
+	
+    <span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'qq');?>
+	</span>
+	
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'passport_date');?>
+	</span>
+	
+    
+</div>
+
+
+
+<div class="row-fluid">
+	<span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'sender_phone');?>
+        <span class="no-float">    
+            	<?=\Sl_Form_Factory::elementToString($this->form, 'notify_sms');?>
+		<?=\Sl_Form_Factory::elementToString($this->form, 'notify_dealer');?>
+                <?=\Sl_Form_Factory::elementToString($this->form, 'notify_email');?>
+                <?=\Sl_Form_Factory::elementToString($this->form, 'is_dealer');?>
+        </span>     
+                
+	</span>
+    
+    <span class="span9">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'description');?>
+	</span>
+</div>
+
+<div class="row-fluid">
+	
+
+	
+    <span class="span3">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customerdealer');?>
+        <?=\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customerusersystem');?>
+	</span>
+    
+	<span class="span3">
+		<?=\Sl_Form_Factory::subformToString($this->form, 'modulerelation_customeremails');?>
+	</span>
+    
+    <span class="span3">
+		<?=\Sl_Form_Factory::subformToString($this->form, 'modulerelation_customerphones');?>
+	</span>
+    
+</div>
+
+<div class="row-fluid">
+	<span class="span3">
+		<?=$this->form->getDisplayGroup('modulerelation_customeruserresponsible_gr');//\Sl_Form_Factory::elementToString($this->form, 'modulerelation_customeruserresponsible');?>
+	</span>
+	
+</div>
+
+
+
+<div class="row-fluid">
+	<span class="span4">
+		<?=\Sl_Form_Factory::elementToString($this->form, 'cancel');?>
+		<?=\Sl_Form_Factory::elementToString($this->form, 'duplicate');?>
+                <?=\Sl_Form_Factory::displaygroupToString($this->form, 'print');?>
+		<?=\Sl_Form_Factory::elementToString($this->form, 'save');?>
+
+	</span>
+	
+</div>
+
+	
+	
+	
+
+
+</form>  
+<?php } //echo $this->form; } ?>

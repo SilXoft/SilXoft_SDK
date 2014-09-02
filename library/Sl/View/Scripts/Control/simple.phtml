@@ -1,0 +1,26 @@
+<? if ($this->button->getLikeBtn()){ ?>
+<span <?php echo $this->attribs; ?> <?php echo $this->button->getId()?' id="'.$this->button->getId().'" ':''; ?>
+      <? if($this->button->getRel()){ ?> rel='<?=$this->button->getRel()?>'
+      <? } ?> 
+      class="menu-btn-simple btn btn-mini <?=$this->button->getPullRight()?'pull-right':''?> <?=$this->button->getClass();?>  <?=$this->button->getClassSpan();?>">
+    <? if($this->button->getIcon()): ?>
+    <i  class="icon icon-<?php echo $this->button->getIconClass(); ?> <?=$this->button->getClass();?> <?php if($this->button->getOption('small')) { echo ' icon-small '; }?>"></i>
+    <? endif;?>
+    <?php echo $this->button->getLabel(); ?>
+</span>
+
+<? } else {?>
+    
+<span <?php echo $this->attribs; ?> <?php echo $this->button->getId()?' id="'.$this->button->getId().'" ':''; ?>
+      <? if($this->button->getRel()){ ?> rel='<?=$this->button->getRel()?>'
+      <? } ?> 
+      <? if($this->button->getOnClick()){?>
+            onClick="<?=$this->button->getOnClick()?>" 
+      <? }?>
+      class="menu-btn-simple <?=$this->button->getPullRight()?'pull-right':''?> icon icon-<?php echo $this->button->getIconClass(); ?> <?=$this->button->getClass();?> <?php if($this->button->getOption('small')) { echo ' icon-small '; }?>"
+      >
+    <?php echo $this->button->getLabel(); ?>
+</span>
+    
+
+<?}?>

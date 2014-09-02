@@ -1,0 +1,29 @@
+<div>
+    <ul id="config" data-bind="template: {name: 'list', foreach: config.items} ">
+    </ul>
+</div>
+
+<script id="list" type='text/html'>
+    <li data-bind="event: { hover: showControls }">
+        <span class="icon icon-small" data-bind="css: getClasses, click: toggleOpen"></span>
+        <span class="main" data-bind="attr: {'data-type': type, 'data-load': stateLoad}, html: label"></span>
+        <span data-bind="visible: hasValue">
+            <span class="value" data-bind="html: value"></span>
+        </span>
+        <span data-bind="fadeVisible: showControls, fadeDuration: 100">
+            <span class="icon icon-small icon-plus" data-bind="visible: canAdd, click: add"></span>
+        </span>
+        <ul data-bind="visible: stateOpened, template: {name: 'list', foreach: items} ">
+    </li>  
+</script>
+
+<script id="addOption" type="text/x-jquery-tmpl">
+<input type="text" value="${name}" name="name" placeholder="Название ..." /><br />
+<input type="text" value="${value}" name="value" placeholder="Значение ..." />
+</script>
+
+<div id="modules_data" style="display: none;">
+<?php foreach($this->modules as $module) { ?>
+    <input type="hidden" name="<?php echo $this->translate('title_module_'.$module); ?>" value="<?php echo $module; ?>" />
+<?php } ?>
+</div>

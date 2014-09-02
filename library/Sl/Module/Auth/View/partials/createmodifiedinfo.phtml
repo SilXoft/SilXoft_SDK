@@ -1,0 +1,22 @@
+<p class="text-left">
+    <strong class="text-left"><?php echo $this->translate('Создан(а)'); ?></strong><br />
+    <span class="text-right">
+        <?php echo $this->cuser?$this->cuser->getName():'-'; ?><br />
+        <?php echo $this->cdate?$this->cdate->format('Y-m-d'):'-'; ?>
+    </span>
+</p>
+<p class="text-left">
+    <strong class="text-left"><?php echo $this->translate('Изменен(а)'); ?></strong><br />
+    <span class="text-right">
+        <?php echo $this->muser?$this->muser->getName():'-'; ?><br />
+        <?php echo $this->mdate?$this->mdate->format('Y-m-d'):'-'; ?>
+    </span>
+</p>
+<?php if($this->luser) { ?>
+    <p class="text-left" style="color: red;">
+        <strong class="text-left"><?php echo $this->translate('Редактируется'); ?></strong><br />
+        <span class="text-right">
+            <?php echo $this->luser?$this->luser->getName():'-'; ?>
+        </span>
+    </p>
+<?php } ?>

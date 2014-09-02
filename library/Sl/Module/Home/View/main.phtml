@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta name="description" content="">
+	<?php Sl_Event_Manager::trigger(new Sl_Event_View('headTitle', array('view' => $this))); ?>
+	<?php echo $this->headTitle(); ?>
+	
+    <!-- Le styles -->
+    <link href="/css/jquery-ui.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    
+    
+    <!--<link href="http://code.jquery.com/ui/1.8.2/themes/smoothness/jquery-ui.css" rel="stylesheet">-->
+    <!--<link href="/css/light/jquery.datatables.css" rel="stylesheet">-->
+    <?php if(stripos($_SERVER['HTTP_USER_AGENT'],"iPod") || stripos($_SERVER['HTTP_USER_AGENT'],"iPhone") || stripos($_SERVER['HTTP_USER_AGENT'],"iPad")) { ?>
+        <!--<link href="/css/jquery.mobile.min.css" rel="stylesheet"> -->
+    <?php } ?>
+    <? //<link rel="stylesheet" href="/css/light/theme.css" id="themestyle"> ?>
+    <link rel="stylesheet" href="/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/css/jquery.layout.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/jquery-ui-timepicker-addon.css">
+    
+    
+    <? // <link href="/css/datepicker.css" rel="stylesheet"> ?>
+	<? // <link rel="stylesheet" href="/css/light/theme.css" id="themestyle"> ?>
+	<? // <link rel="stylesheet" href="/css/main.css"> ?>
+	
+	
+	<!-- custom css begin --><?php Sl_Event_Manager::trigger(new Sl_Event_View('headLink', array('view' => $this))); ?>
+	<?php echo $this->headLink(); ?><!-- custom css end -->
+	
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script src="/js/libs/underscore.min.js"></script>
+	<script src="/js/libs/jquery/1.8/jquery-1.8.3.min.js"></script>
+	<script src="/js/libs/jquery/1.8/jquery-ui.min.js"></script>
+       <script src="/js/libs/jquery.tmpl.min.js"></script> 
+        <script src="/js/libs/jquery.editable.js"></script>
+        <script src="/js/libs/knockout/knockout.js"></script>
+        <script src="/js/libs/knockout/knockout.mapping.js"></script>
+        <script src="/js/libs/knockout/ui/util.js"></script>
+        <script src="/js/libs/knockout/ui/contextmenu.js"></script>
+	<script src="/js/libs/jquery/plugin/iframePopup.js"></script>
+    <?php if(stripos($_SERVER['HTTP_USER_AGENT'],"iPod") || stripos($_SERVER['HTTP_USER_AGENT'],"iPhone") || stripos($_SERVER['HTTP_USER_AGENT'],"iPad")) { ?>
+        <!--<script src="/js/libs/jquery/1.8/jquery.mobile.min.js"></script>-->
+    <?php } ?>
+         <script src="/js/libs/jquery.tap.min.js"></script>
+	<?//<script src="/js/libs/jquery.mask.min.js"></script>?>
+    <script src="/js/libs/md5.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/libs/jquery.jstree.js"></script>
+    <script src="/js/libs/bootstrap-contextmenu.js"></script>
+    <script src="/js/libs/jquery.bootstrap.file.js"></script>
+	<? /* <script src="/js/bootstrap-datepicker.js"></script> */ ?>
+	<script src="/js/libs/datatables.min.js"></script>
+    <script src="/js/libs/datatables.silenca.js"></script>
+    <script src="/js/libs/listview.js"></script>
+    <script src="/js/libs/datatables.pagination.bootstrap.js"></script>
+    <script src="/js/libs/datatables.colreorder.min.js"></script>
+    <script src="/js/libs/datatables.colreorderresize.js"></script>
+    <script src="/js/libs/jquery.layout.min.js"></script>
+    <script src="/js/core.js"></script>
+    <script src="/js/global.js"></script>
+    
+    <script src="/js/libs/calculator.js"></script>
+    <script src="/js/libs/insertatcaret.js"></script>
+    <script src="/js/libs/jquery.autosize.min.js"></script>
+    <script src="/js/libs/fileupload/jquery.ui.widget.js"></script>
+    <script src="/js/libs/fileupload/jquery.iframe-transport.js"></script>
+    <script src="/js/libs/fileupload/jquery.fileupload.js"></script>
+    
+    <script src="/js/libs/jquery.maskedinput.js"></script>    
+    <script src="/js/jquery-ui-timepicker-addon.js"></script>
+
+    
+    <!-- custom js begin --><?php Sl_Event_Manager::trigger(new Sl_Event_View('headScript', array('view' => $this))); ?>
+    <?php echo $this->headScript(); ?><!-- custom js end -->
+  </head>
+
+
+  <body <?php if($this->model_alias){ echo ' data-alias="'.$this->model_alias.'" '; } ?> class="<?php echo $this->is_iframe?' iframe ':''; ?> <?php echo $this->action?' '.$this->action.' ':''; ?>">
+	<div class="container">  
+    <?php Sl_Event_Manager::trigger(new Sl_Event_View('bodyBegin', array('view' => $this))); ?>
+    <div id="pageoptions">
+        <?php Sl_Event_Manager::trigger(new Sl_Event_View('pageOptions', array('view' => $this))); ?>
+    </div>
+    
+    <header>
+        <div id="logo">
+            <?php Sl_Event_Manager::trigger(new Sl_Event_View('logo', array('view' => $this))); ?>
+        </div>
+        <div id="header">
+            <?php Sl_Event_Manager::trigger(new Sl_Event_View('header', array('view' => $this))); ?>
+        </div>
+    </header>
+    
+    <div class="navbar navbar-inverse nav">
+        <?php Sl_Event_Manager::trigger(new Sl_Event_View('nav', array('view' => $this))); ?>
+    </div>
+
+   
+  	<?php
+    Sl_Event_Manager::trigger(new Sl_Event_View('beforePageHeader', array('view' => $this)));
+    
+    if (strlen($this->title) || strlen($this->subtitle)){?>
+        <div class="page-header">	
+            <h3>
+                <span class="title"><?php echo $this->title?($this->title.': '):''; ?></span><span class='subtitle'><?=$this->subtitle?></span>
+              
+            </h3>
+            
+        </div>
+    <?}
+    Sl_Event_Manager::trigger(new Sl_Event_View('beforeContent', array('view' => $this)));
+    Sl_Event_Manager::trigger(new Sl_Event_View('content', array('view' => $this)));
+    //echo $this->layout()->content;
+    Sl_Event_Manager::trigger(new Sl_Event_View('afterContent', array('view' => $this)));
+    ?>
+    <script>
+	 <? if ($this->is_iframe){?>
+    	var is_iframe = true;
+		
+    <? } else { ?>
+    	var is_iframe = false;	
+     <? }?> 
+         var cur_action = '<?php echo $this->action?$this->action:'';?>';
+    </script>
+    <footer>
+        <?php Sl_Event_Manager::trigger(new Sl_Event_View('footer', array('view' => $this))); ?>
+        <? if (!$this->is_iframe){?>
+        <a href='http://silencatech.com/' target='_blank' class='silenca-logo pull-right'></a>
+        <?}?>
+    </footer>
+    <?php Sl_Event_Manager::trigger(new Sl_Event_View('bodyEnd', array('view' => $this))); ?>
+    </div>
+    <?php if(file_exists(APPLICATION_PATH.'/../public/ondev.phtml')) {
+        require_once APPLICATION_PATH.'/../public/ondev.phtml';
+    } ?>
+    <?= $this->partial('partials/informer.php', array('is_iframe'=>$this->is_iframe))?>
+    <?php echo $this->partial('partials/tmpls.phtml'); ?>
+</body>
+</html>

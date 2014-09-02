@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle(); ?>
+        <meta name="description" content="">
+
+        <!-- Apple iOS and Android stuff -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" href="/images/icon.png">
+        <link rel="apple-touch-startup-image" href="/images/startup.png">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+
+        <!-- Google Font and style definitions -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:regular,bold">
+        <link rel="stylesheet" href="/css/style.css">
+
+        <!-- include the skins (change to dark if you like) -->
+        <link rel="stylesheet" href="/css/light/theme.css" class="theme">
+
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link rel="stylesheet" href="/css/ie.css">
+        <![endif]-->
+
+        <!-- Use Google CDN for jQuery and jQuery UI -->
+        <script src="/js/libs/jquery.min.js"></script>
+       <script src="/js/libs/jquery-ui.min.js"></script>
+
+        <!-- Loading JS Files this way is not recommended! Merge them but keep their order -->
+
+        <!-- some basic functions -->
+        <script src="/js/whiteLabel/functions.js"></script>
+        
+    <script src="/js/whiteLabel/plugins.js"></script>
+    <script src="/js/whiteLabel/editor.js"></script>
+	<script src="/js/whiteLabel/calendar.js"></script>
+
+        
+    <script src="/js/whiteLabel/wl_Alert.js"></script>
+	<script src="/js/whiteLabel/wl_Autocomplete.js"></script>
+	<script src="/js/whiteLabel/wl_Breadcrumb.js"></script>
+	<script src="/js/whiteLabel/wl_Calendar.js"></script>
+	<script src="/js/whiteLabel/wl_Chart.js"></script>
+	<script src="/js/whiteLabel/wl_Color.js"></script>
+	<script src="/js/whiteLabel/wl_Date.js"></script>
+	<script src="/js/whiteLabel/wl_Editor.js"></script>
+	<script src="/js/whiteLabel/wl_File.js"></script>
+	<script src="/js/whiteLabel/wl_Dialog.js"></script>
+	<script src="/js/whiteLabel/wl_Fileexplorer.js"></script>
+	<script src="/js/whiteLabel/wl_Form.js"></script>
+	<script src="/js/whiteLabel/wl_Gallery.js"></script>
+	<script src="/js/whiteLabel/wl_Number.js"></script>
+	<script src="/js/whiteLabel/wl_Password.js"></script>
+	<script src="/js/whiteLabel/wl_Slider.js"></script>
+	<script src="/js/whiteLabel/wl_Store.js"></script>
+	<script src="/js/whiteLabel/wl_Time.js"></script>
+	<script src="/js/whiteLabel/wl_Valid.js"></script>
+	<script src="/js/whiteLabel/wl_Widget.js"></script>
+        
+    <script src="/js/whiteLabel/config.js"></script>
+    <script src="/js/whiteLabel/script.js"></script>   
+        
+        <?php echo $this->headScript(); ?>
+    </head>
+    <body id="login">
+        <div id="fb-root"></div>
+        <section id="content">
+            <?php echo $this->layout()->content; ?>
+        </section>
+        <footer><!--Copyright by revaxarts.com 2011--></footer>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+
+<?php
+if ($this->array && count($this->array)) {
+
+    if (!isset($this->array['value']) || !strlen($this->array['value'])) {
+        $this->array['value'] = '------';
+    }
+
+        ?>
+        <div class ='span-field detailed-cell'>
+            <div class="display-names"><div class='names <?= $this->array['class_name'] ?>'><?= $this->array['label']; ?>:</div></div>
+            <div  class="display-values"><div class='values <?= $this->array['class_name'] ?>'><?= is_array($this->array['value'])?implode(', ',$this->array['value']):$this->array['value']; ?></div></div>
+        </div>
+
+<? }?>

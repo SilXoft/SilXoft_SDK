@@ -1,0 +1,7 @@
+<?php if($this->errors) { ?>
+    <?php foreach($this->errors as $el_name=>$errors) { ?>
+        <?php echo $el_name.': '.current($errors)."\r\n<br />"; ?>
+    <?php } ?>
+<?php } ?>
+<?php
+echo $this->form;

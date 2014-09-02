@@ -1,0 +1,46 @@
+<?php if($this->exception) { ?>
+    <div>
+        <h2><?php echo $this->exception->getMessage(); ?></h2>
+        <div><?php echo $this->exception->getTraceAsString(); ?></div>
+    </div>
+<?php } else { ?>
+    <script>
+        <?php echo $this->calc_script?>
+	</script>
+    <?php if($this->errors) { ?> 
+        <?php echo $this->partial('errors.phtml', array('errors'=>$this->errors)); ?>
+    <?php } ?>
+    
+    <form class='<?php echo $this->form->getAttrib('class'); ?> form-horizontal' action='<?php echo $this->form->getAction()?>' method='<?php echo $this->form->getMethod(); ?>'>
+        <?php echo \Sl_Form_Factory::elementToString($this->form, 'form_after_save_url');?>
+
+        <div class="row-fluid">
+            <span class="span6">
+                <?php echo \Sl_Form_Factory::elementToString($this->form, 'name'); ?>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <span class="span2">
+                <?php echo \Sl_Form_Factory::elementToString($this->form, 'minute'); ?>
+                <?php echo \Sl_Form_Factory::elementToString($this->form, 'hour'); ?>
+                <?php echo \Sl_Form_Factory::elementToString($this->form, 'day'); ?>
+                <?php echo \Sl_Form_Factory::elementToString($this->form, 'month'); ?>
+                <?php echo \Sl_Form_Factory::elementToString($this->form, 'command'); ?>
+            </span>
+        </div>
+        <div class="row-fluid">
+            <span class="span6">
+                <?php echo \Sl_Form_Factory::elementToString($this->form, 'description'); ?>
+            </span>
+        </div>
+        
+        <div class="row-fluid">
+            <hr noshade="noshade" />
+            <span class="span6">
+                <?=\Sl_Form_Factory::elementToString($this->form, 'cancel');?>
+                <?=\Sl_Form_Factory::elementToString($this->form, 'print');?>
+                <?=\Sl_Form_Factory::elementToString($this->form, 'save');?>
+            </span>
+        </div>
+    </form>
+<?php } ?>

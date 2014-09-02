@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+
+        <link href="/css/jquery-ui.css" rel="stylesheet"> 
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="/css/jquery.fileupload.css">
+        <link rel="stylesheet" href="/css/jquery.layout.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/jquery-ui-timepicker-addon.css">
+        <!-- custom css begin --><?php Sl_Event_Manager::trigger(new Sl_Event_View('headLink', array('view' => $this))); ?>
+        <?php echo $this->headLink(); ?><!-- custom css end -->
+
+        <script src="/js/libs/underscore.min.js"></script>
+        <script src="/js/libs/jquery/1.8/jquery-1.8.3.min.js"></script>
+        <script src="/js/libs/jquery/1.8/jquery-ui.min.js"></script>
+        <script src="/js/libs/jquery.tmpl.min.js"></script> 
+        <script src="/js/libs/jquery.editable.js"></script>
+        <script src="/js/libs/knockout/knockout.js"></script>
+        <script src="/js/libs/knockout/knockout.mapping.js"></script>
+        <script src="/js/libs/knockout/ui/util.js"></script>
+        <script src="/js/libs/knockout/ui/contextmenu.js"></script>
+        <script src="/js/libs/jquery/plugin/iframePopup.js"></script>
+        <script src="/js/libs/jquery.tap.min.js"></script>
+        <script src="/js/libs/md5.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/libs/jquery.jstree.js"></script>
+        <script src="/js/libs/bootstrap-contextmenu.js"></script>
+        <script src="/js/libs/jquery.bootstrap.file.js"></script>
+        <script src="/js/libs/datatables.min.js"></script>
+        <script src="/js/libs/datatables.silenca.js"></script>
+        <script src="/js/libs/listview.js"></script>
+        <script src="/js/libs/datatables.pagination.bootstrap.js"></script>
+        <script src="/js/libs/datatables.colreorder.min.js"></script>
+        <script src="/js/libs/datatables.colreorderresize.js"></script>
+        <script src="/js/libs/jquery.layout.min.js"></script>
+        <script src="/js/core.js"></script>
+        <script src="/js/global.js"></script>
+
+        <script src="/js/libs/calculator.js"></script>
+        <script src="/js/libs/insertatcaret.js"></script>
+        <script src="/js/libs/jquery.autosize.min.js"></script>
+        <script src="/js/libs/fileupload/jquery.ui.widget.js"></script>
+        <script src="/js/libs/fileupload/jquery.iframe-transport.js"></script>
+        <script src="/js/libs/fileupload/jquery.fileupload.js"></script>
+        <script src="/js/jquery-ui-timepicker-addon.js"></script>
+
+        <!-- custom js begin --><?php Sl_Event_Manager::trigger(new Sl_Event_View('headScript', array('view' => $this))); ?>
+        <?php echo $this->headScript(); ?><!-- custom js end -->
+    </head>
+
+
+    <body>
+        <div class="container">
+
+            <header></header>
+
+            <div class="navbar navbar-inverse nav">
+                <?php Sl_Event_Manager::trigger(new Sl_Event_View('nav', array('view' => $this))); ?>
+            </div>
+            <?php Sl_Event_Manager::trigger(new Sl_Event_View('beforePageHeader', array('view' => $this))); ?>
+            <?php if (strlen($this->title) || strlen($this->subtitle)) { ?>
+                <div class="page-header">	
+                    <h3>
+                        <span class="title"><?php echo $this->title ? ($this->title . ': ') : ''; ?></span><span class='subtitle'><?= $this->subtitle ?></span>
+                    </h3>
+                </div>
+            <?php } ?>
+            <?php echo $this->error_message; ?>
+            <footer>
+                <a href='http://silencatech.com/' target='_blank' class='silenca-logo pull-right'></a>
+            </footer>
+        </div>
+        <?php if (file_exists(APPLICATION_PATH . '/../public/ondev.phtml')) {
+            require_once APPLICATION_PATH . '/../public/ondev.phtml';
+        }?>
+    </body>
+</html>

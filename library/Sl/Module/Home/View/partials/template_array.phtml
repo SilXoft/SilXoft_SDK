@@ -1,0 +1,14 @@
+<?if (count($this->template_array)){?>
+<div class ="printform_helper pull-right" id="printform_helper">
+    <div class="tittle_template"><?php echo $this->translate('Легенда');?></div>
+    <div class="content_templates">
+  <?foreach($this->template_array as $key=>$value){?>
+        <div class="inline">
+            <a title ="<?=$key?> " class="name"><?=$value?></a>
+            
+        </div>
+        <?}?>
+    </div> 
+  
+</div>
+<?}else{?><div class ="printform_helper pull-right" id="printform_helper"></div><?}?>

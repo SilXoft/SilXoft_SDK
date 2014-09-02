@@ -1,0 +1,38 @@
+<?php
+
+
+$request = Zend_Controller_Front::getInstance() -> getRequest();
+$controller = $request -> getControllerName();
+
+$data = array('type'=> \Sl_Service_Acl::RES_TYPE_MVC, 
+              'module'=> $request->getParam('module'),
+              'controller'=> $request->getParam('controller'),
+              'action'=> 'list');
+
+$alias = implode('.',array($request->getParam('module'),$request->getParam('controller'),$request->getParam('controller')));
+
+if (!($page = $this -> navigation($this -> menu) -> findOneBy('id', $alias))){
+    $page = $this -> navigation($this -> menu) -> findOneBy('controller', $controller);
+}
+
+
+/* @var $page Zend_Navigation_Page */
+
+if ($page) {
+	$page -> setActive();
+}
+
+if ($this -> menu) {
+	
+    ?>
+    
+    <?
+    $this->navigation($this->menu)-> breadcrumbs($this->menu)->setPartial(array('breadcrumb_ul.phtml','menu'));
+  
+ 	
+    echo $this->navigation($this -> menu) -> breadcrumbs() -> setLinkLast(true)->render();
+	?>
+	
+	<? 
+	
+}

@@ -1,0 +1,66 @@
+<ul id="nav">
+
+<?php
+
+$html = array();
+//$this->navigation()->setAcl(Application_Service_Acl::getAcl())->setRole(Application_Service_Acl::getRole());
+
+foreach ($this->container as $page)
+{
+    if(!$this->navigation()->accept($page)) continue;
+    $active = $page->isActive();
+
+    /*@var $page Zend_Navigation_Page*/
+    if($page->hasPages()) {
+        foreach($page->pages as $p) {
+            if($p->isActive()) $active = true;
+        }
+    }
+
+    if($page->getClass()) {
+        $html[] = '<li class="'.$page->getClass().' '.($active?'active':'').'">';
+    } else {
+        $html[] = '<li '.($active?'class="active"':'').'>';
+    }
+
+    $props = $page->GetCustomProperties();
+
+    if(isset($props['href'])) {
+        $html[] = "<a href='".$props['href']."'>";
+    } else {
+        $html[] = "<a href='".$page->getHref()."'>";
+    }
+    $html[] = "<span>".$page->getLabel()."</span>";
+    $html[] = "</a>";
+
+    if (!empty($page->pages)) {
+        $html[] = "<ul>";
+
+        foreach ($page->pages as $subpage) {
+
+            if(!$this->navigation()->accept($subpage)) continue;
+
+            if($subpage->getClass()) {
+                $html[] = '<li class="'.$subpage->getClass().'">';
+            } else {
+                $html[] = "<li>";
+            }
+            if ($href = $subpage->getHref()) $html[] = "<a href=\"{$href}\">";
+            else $html[] = "<a href=\"#\">";
+
+            $html[] = "<span>".$subpage->getLabel()."</span>";
+
+            $html[] = "</a>";
+            $html[] = "</li>";
+        }
+
+        $html[] = "</ul>";
+    }
+
+    $html[] = "</li>";
+}
+
+echo join(PHP_EOL, $html);
+
+?>
+</ul>

@@ -1,0 +1,8 @@
+<h2>Користувачi</h2>
+<?php if(isset($this->success)) { ?>
+    <div style="color: white; background-color: <?php echo $this->success?'green':'red'; ?>">
+        <?php echo implode('<br />', $this->messages); ?>
+    </div>
+<?php } ?>
+<?php $this->form->setAction($this->url()); ?>  
+<?php if($this->form) echo $this->form; ?>

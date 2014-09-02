@@ -1,0 +1,10 @@
+<?$item = $this->item;?>
+<div title='<?=$this->item->getTitle()?>'>
+    <div class='shortview' <?=($this->item->getId()?"id='{$this->item->getId()}'":'')?> >
+     <?if ($item->getShowBadge()):?> <span class="badge badge-important" <?=($item->getBadgeDefaultVisibility()?'':'style="display:none;"')?>><?=$item->getBadge()?></span> <?endif;?>   
+        
+    <?if ($item->getIcon()):?> <img src="<?=$this->icon_path.$item->getIcon()?>"> <?endif;?>
+    <?if ($item->getShortContent()):?> <span class='short-content'><?=$item->getShortContent()?></span> <?endif;?>
+    </div>
+    <?if ($item->getContent()):?> <div class='content-wrapper'><a href='#' class='close pull-right'><i class='icon-arrow-left'></i></a><span class='content'><?=$item->getContent()?></span></div> <?endif;?>
+</div>

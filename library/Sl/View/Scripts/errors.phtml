@@ -1,0 +1,25 @@
+
+<?php if ($errors && count($errors)) { ?>
+        <div class="alert alert-error">
+            <button class="close" data-dismiss="alert" type="button"><i class="icon-remove icon-white"></i></button>
+            <?php foreach ($errors as $key => $error) { ?>
+
+                <div><strong><?= $key; ?>: </strong> <?php
+        if (is_array($error)) {
+            foreach ($error as $error_text) {
+                if (is_array($error_text)) {
+                    foreach ($error_text as $error_subtext) {
+                        echo $error_subtext;
+                    }
+                } else {
+                    echo $error_text;
+                }
+            }
+        } else {
+            echo $error;
+        }
+                ?></div>
+    <?php } ?>
+        </div>
+    <?php } ?>
+

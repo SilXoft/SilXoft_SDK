@@ -1,0 +1,57 @@
+<div class="<?php echo $this->button->getDropDir(true); ?> <?=$this->button->getClass()?> <?if ($this->button->getPullRight()) echo " pull-right ";?>" <? if($this->button->getId()){?>id='<?=$this->button->getId()?>'<?} ?>>
+    <?if ($this->button->getBadge()){?>
+        <span class='badge'><?=$this->button->getBadgeText()?></span>
+    <?}?>
+    <span <?php if($this->button->getOption('title')) { echo ' title="'.$this->button->getOption('title').'" '; } ?> class="icon icon-<?php echo $this->button->getIconClass(); ?> <?php if($this->button->getOption('small')) { echo ' icon-small '; }?> dropdown-toggle" data-toggle="dropdown"></span>
+    <ul class="dropdown-menu"> 
+        <?php foreach($this->button->getItems() as $item) { ?>
+            <? if (count($item->getSubitems())){ ?>
+            <li class='dropdown-submenu'>
+                
+                <a href="<?php echo $item->getHref(); ?>" <?php if(count($item->getData())) { echo $item->getData(true); } ?> rel="<?php echo $item->getRel();  ?>" class="<?php echo $item->getClass()?>">
+                    
+                    <input type="hidden" name="<?php echo $item->getHtmlName(); ?>" value="" id="<?php echo $item->getHtmlId(); ?>">
+                     <? if (strlen($item->getIcon())){?>
+                     
+                     <i class='icon-small icon-<?=$item->getIcon()?>'></i>
+                       
+                    <?}?>
+                    <?php echo $item->getLabel(); ?>
+                </a>
+                <ul class="dropdown-menu"> 
+                <?php foreach($item->getSubitems() as $subitem) { ?>
+                        <li>
+                            
+                            <a href="<?php echo $subitem->getHref(); ?>" <?php if(count($subitem->getData())) { echo $subitem->getData(true); } ?> rel="<?php echo $subitem->getRel();  ?>" class="<?php echo $subitem->getClass()?>">
+                                <input type="hidden" name="<?php echo $subitem->getHtmlName(); ?>" value="" id="<?php echo $subitem->getHtmlId(); ?>">
+                                <? if (strlen($subitem->getIcon())){?>
+                     
+                                     <i class='icon-small icon-<?=$subitem->getIcon()?>'></i>
+                                       
+                                 <?}?>
+                                <?php echo $subitem->getLabel(); ?>
+                            </a>
+                        </li>
+                        
+                   <? }?>
+                 </ul>  
+            </li>    
+                
+            <? } else {?>    
+            <li>
+                  
+                
+                <a href="<?php echo $item->getHref(); ?>" <?php if(count($item->getData())) { echo $item->getData(true); } ?> rel="<?php echo $item->getRel();  ?>" class="<?php echo $item->getClass()?>">
+                    <input type="hidden" name="<?php echo $item->getHtmlName(); ?>" value="" id="<?php echo $item->getHtmlId(); ?>">
+                    <? if (strlen($item->getIcon())){?>
+                     
+                         <i class='icon-small icon-<?=$item->getIcon()?>'></i>
+                           
+                     <?}?>
+                    <?php echo $item->getLabel(); ?>
+                </a>
+            </li>
+        <?php  } 
+             } ?>
+    </ul>
+</div>

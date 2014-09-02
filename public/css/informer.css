@@ -1,0 +1,149 @@
+#btn_informer_w {
+	width:40px;
+	
+	background:rgba(5, 5, 5, 0.7);
+	background-image: url("../img/png/small-white/glyphicons_223_chevron-right.png");
+	background-position: 28px 2px;
+	background-repeat: no-repeat;
+	
+	position:fixed;
+ 	left:-25px;
+
+	top:0px;
+	height:100%;
+	display:none;
+	
+	
+	font-size:11px;
+	color:#fff;
+	z-index: 1000;
+	
+}
+
+#btn_informer_w.open, #btn_informer_w.allways-open{
+		left:0;
+		background-image: none;
+}
+
+
+
+
+#btn_informer {
+	
+	margin-top:100px;
+}
+
+
+
+
+#btn_informer > * {
+	
+	display:block;
+	border-bottom:#ddd solid 1px;
+	
+	margin:2px;
+	text-align:center;
+	position:relative;
+	
+	
+}
+
+#btn_informer > *:last-child {
+	
+	
+	border-bottom:none;
+	
+}
+
+#btn_informer .content-wrapper{
+	display:none;
+}
+
+#btn_informer .content{
+	text-align:left;
+}
+
+
+#btn_informer .content-wrapper {
+	background:#fff;
+	color:#000;
+}
+#btn_informer  >*.open{
+	background-color:#000000;
+	opacity:1;
+}
+#btn_informer  >*.open >.content-wrapper, .like-informer{
+	
+	
+	padding:3px;
+	background:#f2f2f2;
+	border-left:8px #7d848f solid;
+	
+	
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+}
+
+#btn_informer  >*.open >.content-wrapper {
+	padding-right:15px;
+	position:absolute;
+	left: 50px;
+	border-radius:3px;
+	z-index: 100;
+	display:block;
+	min-height:100px;
+	min-width:100px;
+	top:-30px;
+}
+
+#btn_informer  >*.open >.content-wrapper:before
+{
+	width: 0; 
+	height: 0; 
+	position:absolute;
+	left:-18px;
+	top:33px;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent; 
+    content:' ';	
+	border-right:10px solid #7d848f; 
+	
+	
+}
+#btn_informer  >*.open >.content-wrapper > .close{
+	position:absolute;
+	right:2px;
+	top:2px;
+	
+}
+#btn_informer  >* >.shortview{
+	cursor:pointer;	
+	font-size:9px;
+	padding-bottom:3px;
+	padding-top:3px;
+}
+/*
+#btn_informer  >*.open >.shortview:after
+{
+	width: 0; 
+	height: 0; 
+	position:absolute;
+	right:-14px;
+	top:5px;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent; 
+    content:' ';	
+	border-right:10px solid #7d848f; 
+	
+	
+}
+*/
+#btn_informer > * .badge{
+	position:absolute;
+	top: -5px;
+	left:20px;
+}
+
+#btn_informer > * .short-content{
+	padding-top:8px;
+	display:block;
+}

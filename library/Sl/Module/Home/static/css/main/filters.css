@@ -1,0 +1,246 @@
+/**
+ * Test filter composer
+ *************************/
+.fieldset {
+    padding: 12px 10px 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    min-width: 300px;
+    max-width: 900px;
+    min-height: 21px;
+    display: block;
+    margin: 10px 0px;
+}
+
+.fieldset.clean {
+    padding: 5px 10px;
+    max-width: 200px;
+    border: none;
+    border-radius: none;
+    margin: 0px;
+}
+
+.fieldset_plus,
+.field_plus {
+    padding: 0px 7px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.field {
+    display: inline-block;
+    width: 95%;
+}
+
+.field_plus {
+    padding: 5px 7px 0px;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.filter_field {
+    padding-left: 7px;
+}
+
+.field .comparison {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+.field .icon-remove {
+    cursor: pointer;
+}
+
+.templates {
+    display: none;
+}
+/**
+ * Test filter composer
+ *************************/
+
+#tabs .dataTables_wrapper {
+    top: 0px;
+    z-index: 100;
+    position: relative;
+    margin-bottom: 0px;
+    padding-right: 10px;
+}
+
+#tabs table th[role="columnheader"],
+#tabs table td {
+    white-space: nowrap;
+}
+
+.ui-tabs-panel {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+ 
+div.dataTables_paginate {
+    float: right;
+    margin: 0;
+}
+
+table {
+    margin: 1em 0;
+    clear: both;
+}
+
+.table_filter.add {
+    color: green;
+}
+
+.table_filter.current {
+    color: blue;
+}
+
+.table_fieldset.current {
+    color: blue;
+}
+
+.table_length.current {
+    color: blue;
+}
+
+.dataTables_wrapper {
+    margin-top: 30px;
+}
+
+#advanced {
+    clear: both;
+}
+
+#advanced-layout {
+    border: 1px solid silver;
+    min-height: 400px;
+    clear: both;
+    margin-top:10px;
+}
+
+.ui-layout-container {
+    border-radius: 3px;
+}
+
+.ui-layout-pane {
+    border: none;
+}
+/*
+.jstree-leaf[rel="condition"] > a {
+    background-color: rgb(255, 252, 237);
+    border-radius: 5px;
+}
+
+.jstree-leaf[rel="term"] > a,
+.jstree-open[rel="term"] > a,
+.jstree-closed[rel="term"] > a {
+    background-color: powderblue;
+    border-radius: 5px;
+}
+*/
+.ui-dialog-titlebar-close {
+    
+}
+
+[data-type="comp"] .date-short,
+[data-type="comp"] .text-short {
+    width: 87px;
+}
+
+.filter_condition .cond_field {
+    color: darkblue;
+}
+
+.filter_condition .cond_type {
+    font-style: italic;
+}
+
+.filter_condition .cond_value {
+    font-weight: bold;
+}
+
+.dt-controls {
+    margin-top:50px;
+    margin-bottom:5px;
+    min-height:20px;
+}
+.dt-controls > div > * {
+    margin-left:5px;
+}
+
+
+table.table thead th {
+    width: auto;
+    height: auto;
+    padding: 2px;
+    margin: 0px;
+    text-align: center;
+}
+
+table.table thead th input,
+table.table thead th select {
+    width: 95%;
+    margin: 2px;
+}
+
+table.table thead th {
+    vertical-align: middle;
+}
+
+table.table thead th.date,
+table.table thead th.datetime {
+    vertical-align: top;
+}
+
+table.table thead .date i.icon-calendar {
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 3px;
+    background-position: -189px -117px;
+}
+
+table.table thead i.icon-calendar input {
+    position: absolute;
+    visibility: hidden;
+}
+
+table.table thead .wrapper.date .date_selected {
+    background-color: silver;
+}
+
+.folders .item.btn {
+    margin-right: 2px;
+}
+
+.folders .item.ui-draggable-dragging {
+    color: red;
+}
+
+.ui-draggable-dragging {
+    z-index: 3000;
+}
+
+.folders {
+    height: auto;
+    margin-bottom: 35px;
+}
+
+.columns_chooser ul {
+    overflow: auto;
+    max-height: 270px;
+    min-height: 100px;
+}
+
+.columns_chooser ul.nav {
+    overflow: none;
+}
+
+.configure-div > div {
+    margin-top: 4px;
+    border: 1px solid silver;
+    border-radius: 10px;
+    padding: 5px;
+    width: auto;
+}

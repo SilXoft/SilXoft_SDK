@@ -1,0 +1,13 @@
+RewriteEngine On
+
+RewriteBase /
+RewriteRule ^tracker$ logistic/main/tracker [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/([a-zA-Z0-9\.]+)\.(js|css)$ $4.php?module=$1&controller=$2&action=$3 [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+AddDefaultCharset UTF-8

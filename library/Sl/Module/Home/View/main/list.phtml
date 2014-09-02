@@ -1,0 +1,19 @@
+<?php  if($this->exception) { ?>
+    <div><h2><?php echo $this -> exception -> getMessage(); ?></h2><div><?php echo $this -> exception -> getTraceAsString(); ?></div></div>
+<?php } else { ?>
+	<? /*if (strlen($this->title)):?> <h3><?=$this -> title ?></h3> <? endif; */?>
+        <?php \Sl_Event_Manager::trigger(new \Sl_Event_View('dashboard', array('view'=>$this))); ?>
+        <?if (isset($this->dashboards))
+            if(is_array($this->dashboards)) { 
+                foreach($this->dashboards as $item) {
+                    if(is_array($item)) {
+                        print_r($item);
+                    } else {
+                        echo $item;
+                    }
+                }
+            } else {
+                echo $this->dashboards;
+            }
+        ?>
+<?php }  ?>

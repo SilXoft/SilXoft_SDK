@@ -1,0 +1,19 @@
+.datatable tr{
+	cursor:default;
+}
+/*
+.datatable thead tr th input {
+	width:90%;
+}
+*/
+
+thead .dt_search_input[type="text"].date + img {
+    border-radius: 2px;
+    margin: 0px;
+    margin-left: 4px;
+}
+
+thead .dt_search_input[type="text"].date + img.date_selected,
+thead .dt_search_input[type="text"].datetime + img.date_selected {
+    background-color: silver;
+}

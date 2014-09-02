@@ -1,0 +1,248 @@
+<?php // Шаблоны jQuery ?>
+<script id="alertModal" type="text/x-jquery-tmpl">
+    <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            {{if canClose}}
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            {{/if}}
+            <h3 id="myModalLabel">${header}</h3>
+            {{if headControls}}
+                <span class="controls">
+                    {{if typeof headControls == 'object'}}
+                        {{tmpl(headControls.data) headControls.template}}
+                    {{else}}
+                        {{html headControls}}
+                    {{/if}}
+                </span>
+            {{/if}}
+        </div>
+        <div class="modal-body">
+            {{if typeof body == 'object'}}
+                {{tmpl(body.data) body.template}}
+            {{else}}
+                {{html body}}
+            {{/if}}
+        </div>
+        <div class="modal-footer">
+            {{each(key, value) buttons}}
+                 <button data-name="${key}" class="btn ${value.classes}">${value.name}</button>
+            {{/each}}
+        </div>
+    </div>
+</script>
+<script id="alertMessage" type="text/x-jquery-tmpl">
+    <div class="alert alert-${type} message">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{html message}}
+      </div>
+</script>
+
+<script id="listviewSelected" type="text/x-jquery-tmpl">
+    <div class="selected_data label label-group-select" data-id="${id}" {{each(key, value) attrs}} ${key}="${value}" {{/each}} url="$(url)">
+        <span class="icon-remove_ icon-white pull-right">x</span>
+            {{html content}}
+    </div>
+</script>
+
+<script id="filterSelector" type="text/x-jquery-tmpl">
+    <span class="clearfix"></span>
+    <?php if(Zend_Controller_Front::getInstance()->getRequest()->getControllerName() === 'finpartner') { ?>
+    <span class="pull-left">
+        <span data-field="create" id="bcbuttonscreatemonth">
+            <input type="text" value="" id="create_bcbuttons" style="cursor: pointer; font-size: 10px; padding: 0px 4px; width: 55px;" readonly="readonly" data-editable="1" title="Месяц расчета" class="mtz-monthpicker-widgetcontainer" onclick="initpicker()">
+        </span>
+        <span class="menu-btn-simple  icon icon-download-alt   icon-small " title="Экспорт" id="bcajaxexportcommission" onclick="ajaxexportcommission()"></span>
+    <?php } ?>   
+       <!-- <span title="<?php echo $this->translate('Настройки папок'); ?>" class="configure pull-left btn btn-mini" data-toggle="button">
+            <i class="icon icon-mini icon-cog icon-info"></i>
+        </span>
+        {{each(ind, f) filters}}
+            {{if !f.system }}
+                <span title="{{if f._described && f._described.length }}${f._described}{{else}}${f.title}{{/if}}" class="pull-left btn btn-mini item {{if f.active}}active{{/if}}" data-name="${f.name}">${f.label}</span>
+            {{/if}}
+        {{/each}}-->
+    </span>
+    <span class="pull-right">
+        <span class='selected_els_count_btn_group groupbtn input-append input-prepend'>
+            {{each(ind, f) groupactions}}
+                {{html f.html}}
+            {{/each}}
+             <span title="<?=$this->translate('Выбранные элементы'); ?>: 0" class="btn btn-mini btn-info selected_els_count_btn" data-label='<?=$this->translate('Выбранные элементы');?>'>
+                <i class="icon icon-white icon-small icon-check"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='selected_els_count'>0</span>
+             </span>
+        </span>
+        {{if options.setupButton}}
+            <span title="<?php echo $this->translate('Установить'); ?>" class="setup btn btn-success btn-mini">
+                <i class="icon icon-small icon-ok icon-white"></i>
+            </span>
+        {{/if}}
+        <span title="<?php echo $this->translate('Очистить фильтры'); ?>" class="clean_filters btn btn-danger btn-mini disabled">
+            <i class="icon icon-small icon-ban-circle icon-white"></i>
+        </span>
+        <span title="<?php echo $this->translate('Настройки клонок'); ?>" class="hide_columns btn btn-mini">
+            <i class="icon icon-small icon-adjust-alt"></i>
+        </span>
+        <span>
+            <select class="length_select btn btn-mini">
+                <option value="15">15</option>
+                <option selected value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+            </select>
+            <!--<span class="caret"></span>-->
+        </span>
+    </span>
+    <span class="clearfix"></span>
+    <span class="configure-div"></span>
+    <span class="clearfix"></span>
+</script>
+
+<script id="foldersTr" type="text/x-jquery-tmpl">
+    <div class="folders"></div>
+</script>
+
+<script id="folderSave" type="text/x-jquery-tmpl">
+    <p><?php echo $this->translate('Вы собираетесь сохранить фильтр: '); ?></p>
+    <input type="text" name="name" placeholder="<?php echo $this->translate('Название ...'); ?>" value="${name}" /><br />
+    <input type="text" name="desc" placeholder="<?php echo $this->translate('Описание ...'); ?>" value="${description}" /><br />
+    <ul class="unstyled">
+        {{each(ind, f) filters}}
+            <li>${f._described}</li>
+        {{/each}}
+    </ul>
+</script>
+
+<script id="columnsSelector" type="text/x-jquery-tmpl">
+    <!--<span class="pull-left">
+        <i class="loading icon icon-loading icon-mini hidden"></i>
+    </span>
+    <span class="pull-right btn-group">
+        <span title="<?php echo $this->translate('Добавить'); ?>" class="add btn btn-mini">
+            <i class="icon icon-plus icon-mini"></i>
+        </span>
+        <span title="<?php echo $this->translate('Сохранить'); ?>" class="save btn btn-mini disabled">
+            <i class="icon icon-floppy-disk icon-mini"></i>
+        </span>
+        <span title="<?php echo $this->translate('Удалить'); ?>" class="delete btn btn-mini disabled">
+            <i class="icon icon-trash icon-mini"></i>
+        </span>
+        <span data-current="${current}" title="<?php echo $this->translate('Использовать по-умолчанию'); ?>" class="default btn btn-mini disabled">
+            <i class="icon icon-star icon-mini"></i>
+        </span>
+    </span>-->
+    <span class="clearfix"></span>
+    <table class="columns_chooser table table-bordered table-condensed">
+        <tr>
+            <th class="current"><i class="icon icon-small icon-eye-open"></i>&nbsp;<?php echo $this->translate('Видимые'); ?></th>
+            <th class="available"><i class="icon icon-small icon-eye-close"></i>&nbsp;<?php echo $this->translate('Спрятанные'); ?></th>
+        </tr>
+        <tr>
+            <tr>
+                <td width="250">
+                    <div class="tabbable tabs-left">
+                        <ul class="nav nav-tabs">
+                            {{each(ind, fieldset) fieldsets}}
+                                {{tmpl(fieldset, { current: $data.current }) '#columnsSelectorTabNavItem'}}
+                            {{/each}}
+                        </ul>
+                        <div class="tab-content">
+                            {{each(ind, fieldset) fieldsets}}
+                                {{tmpl(fieldset, { current: $data.current, fields: $data.fields }) '#columnsSelectorTabListItem'}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </td>
+                <td width="150">
+                    <ul class="available unstyled">
+                        {{each(ind, col) available}}
+                            {{tmpl(col, {name: col.sName, label: col.sLabel }) '#columnsSelectorFieldItem'}}
+                        {{/each}}
+                    </ul>
+                </td>
+            </tr>
+        </tr>
+    </table>
+</script>
+
+<script id="columnsSelectorControls" type="text/x-jquery-tmpl">
+    <span class="pull-left">
+        <i class="loading icon icon-loading icon-mini hidden"></i>
+    </span>
+    <span class="pull-right btn-group">
+        <span title="<?php echo $this->translate('Добавить'); ?>" class="add btn btn-mini">
+            <i class="icon icon-plus icon-mini"></i>
+        </span>
+        <span title="<?php echo $this->translate('Сохранить'); ?>" class="save btn btn-mini disabled">
+            <i class="icon icon-floppy-disk icon-mini"></i>
+        </span>
+        <span title="<?php echo $this->translate('Удалить'); ?>" class="delete btn btn-mini disabled">
+            <i class="icon icon-trash icon-mini"></i>
+        </span>
+        <span data-current="${current}" title="<?php echo $this->translate('Использовать по-умолчанию'); ?>" class="default btn btn-mini disabled">
+            <i class="icon icon-star icon-mini"></i>
+        </span>
+    </span>
+</script>
+
+<script id="columnsSelectorTabNavItem" type="text/x-jquery-tmpl">
+    <li title="<?php echo $this->translate('Дв.клик мышкой позволяет редактировать название набора'); ?>" class="{{if $item.current && (name === $item.current)}}active{{/if}}"><a href="#${name}" data-toggle="tab">${label}</a></li>
+</script>
+
+<script id="columnsSelectorFieldItem" type="text/x-jquery-tmpl">
+    <li class="btn btn-mini btn-block" data-name="${$item.name}">${$item.label}</li>
+</script>
+
+<script id="columnsSelectorTabListItem" type="text/x-jquery-tmpl">
+    <div class="tab-panel {{if $item.current && (name === $item.current)}}active{{/if}}" data-label="${label}" id="${name}">
+        <ul class="unstyled fieldset_fields">
+            {{each(ind, col) fields}}
+                {{tmpl(col, {name: $item.fields[col].sName, label: $item.fields[col].sLabel }) '#columnsSelectorFieldItem'}}
+            {{/each}}
+        </ul>
+    </div>
+</script>
+
+<script id="foldersConfigure" type="text/x-jquery-tmpl">
+    <div class="row-fluid">
+        <span class="pull-right">
+            {{if options.useFolders}}
+                {{if !isSystem}}
+                    <span title="<?php echo $this->translate('Редактировать название/описание'); ?>" class="rename btn btn-mini">
+                        <i class="icon icon-pencil icon-small"></i>
+                    </span>
+                {{/if}}
+                <span title="<?php echo $this->translate('Сохранить'); ?>" class="update btn btn-mini {{if !canSave || isSystem}}disabled{{/if}}">
+                    <i class="icon icon-floppy-disk icon-small"></i>
+                </span>
+                <span title="<?php echo $this->translate('Создать'); ?>" class="save btn btn-mini {{if !canSave}}disabled{{/if}}">
+                    <i class="icon icon-plus icon-small"></i>
+                </span>
+                <span title="<?php echo $this->translate('Удалить'); ?>" class="delete btn btn-danger btn-mini {{if isSystem}}disabled{{/if}}">
+                    <i class="icon icon-small icon-trash icon-white"></i>
+                </span>
+            {{/if}}
+        </span>
+        {{if !isSystem}}
+            <h4><?php echo $this->translate('Редактирование папки: '); ?>${folder.label}</h4>
+        {{else}}
+            <h4><?php echo $this->translate('Создание папки'); ?></h4>
+        {{/if}}
+        {{if folder}}
+            {{each(k, item) folder._describedData}}
+                <span>${item}</span><br />
+            {{/each}}
+        {{/if}}
+        {{each(k, item) filters}}
+            <span>${item._described}</span><br />
+        {{/each}}
+    </div>
+</script>
+
+<script id="filterDescriptor" type="text/x-jquery-tmpl">
+    {{if formated}}
+        ${name} ${type} "${value}"
+    {{else}}
+        ${name} ${type} ${value}
+    {{/if}}
+</script>

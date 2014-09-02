@@ -1,0 +1,16 @@
+<?php if($this->errors) { ?>
+    <div>
+        <?php foreach($this->errors as $errors) { ?>
+            <div>
+            <?php if (is_array($errors)): ?> 
+            	<? foreach($errors as $key=>$error) : ?>
+                <?php echo $error; ?>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <?=$errors?>	
+                <? endif; ?>
+                </div>
+        <?php } ?>
+    </div>
+<?php } ?>
+<? echo $this->form;

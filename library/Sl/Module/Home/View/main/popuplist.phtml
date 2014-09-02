@@ -1,0 +1,51 @@
+<script type="text/javascript">
+var table;
+</script>
+<?php echo $this->content; ?>
+<?php /*
+<?php if($this->exception) { ?>
+    <div><h2><?php echo $this -> exception -> getMessage(); ?></h2><div><?php echo $this -> exception -> getTraceAsString(); ?></div></div>
+<?php } else { ?>
+	<?if (strlen($this->title)):?> <h3><?=$this -> title ?></h3> <? endif; ?>  
+	
+	<?if (isset($this->columns) && is_array($this->columns) && isset($this->datarows) && is_array($this->datarows)):?> 
+		
+	<table id="datatable">
+	        <thead>
+	        	<tr><th>select</th>
+	            <?foreach ($this->columns as $column):?>
+	            
+	                <th><?=$column ?></th>
+	            
+	            <?endforeach; ?>
+	            </tr>
+	        </thead>
+	        <tbody>
+	        	<?foreach ($this->datarows as $data):?>
+		            <tr>
+		                <th><? 		
+		                			if ($this->check_type == 'checkbox'){
+		                 
+			                			$options=(is_array($this->selected) && in_array($data->getId(), $this->selected))?array('checked'=>'checked'):array();
+										echo $this -> formCheckbox('check_relation_'.$data->getId(),$data->getId(),$options);
+									} else {
+										echo "<input type='radio' name='check_relation' value='{$data->getId()}'".(in_array($data->getId(), $this->selected)?" checked='checked'":"").">";
+										//$options=(is_array($this->selected) && in_array($data->getId(), $this->selected))?array('checked'=>'checked'):array();
+										//echo $this -> formRadio('radio_relation',array($data->getId())	,$options);
+									}
+							 ?>
+						</th>
+		            
+		              	<?foreach ($this->columns as $column): $method='get'.ucfirst(strtolower($column));?>
+		            
+		                	<td><span id='<?=$column?>-<?=$data->getId()?>'><?=$data->$method() ?></span></td>
+		            
+		            	<?endforeach; ?>
+		            </tr>	
+	            <?endforeach; ?>
+	        </tbody>
+	</table>
+	<?=$this -> formButton('set_selections','set_selections',array('class'=>'set_selections'));?>
+	<?endif; ?>
+<?php } ?>
+*/ ?>

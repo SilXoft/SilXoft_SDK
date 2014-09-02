@@ -1,0 +1,12 @@
+<ul>
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <?php if($this->menu) { ?>
+        <?php foreach($this->menu as $item) { ?>
+            <li>$item</li>
+        <?php } ?>
+    <?php } else { ?>
+            <li><a>No menu defined</a></li>
+    <?php } ?>
+</ul>

@@ -1,0 +1,8 @@
+<?php if($this->menu) { ?>
+    <?php $this->navigation()->menu($this->menu)->setMaxDepth(0); ?>
+    <ul class="headernav">
+        <li>
+            <?php echo $this->navigation()->menu($this->menu)->render(); ?>
+        </li>
+    </ul>
+<?php } ?>

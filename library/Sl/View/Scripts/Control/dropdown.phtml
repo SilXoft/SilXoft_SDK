@@ -1,0 +1,22 @@
+<div class="btn-group <?php echo $this->button->getDropDir(true); ?> <?=$this->button->getClass()?> <?if ($this->button->getPullRight()) echo " pull-right ";?>" <? if($this->button->getId()){?>id='<?=$this->button->getId()?>'<?} ?>>
+   
+    <span class='btn'>
+     <?if ($this->button->getBadge()){?>
+        <span class='badge'><?=$this->button->getBadgeText()?></span>
+    <?}?>
+            
+    <span  class="icon icon-<?php echo $this->button->getIconClass(); ?> <?php if($this->button->getOption('small')) { echo ' icon-small '; }?>"></span>
+    
+    <?php if($this->button->getOption('title')) { echo $this->button->getOption('title'); } ?>
+    </span>
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+    <ul class="dropdown-menu"> 
+        <?php foreach($this->button->getItems() as $item) { ?>
+            <li>
+                <a href="<?php echo $item->getHref(); ?>" rel="<?php echo $item->getRel();  ?>" class="<?php echo $item->getClass()?>">
+                    <input type="hidden" name="<?php echo $item->getHtmlName(); ?>" value="" id="<?php echo $item->getHtmlId(); ?>"><?php echo $item->getLabel(); ?>
+                </a>
+            </li>
+        <?php } ?>
+    </ul>
+</div>

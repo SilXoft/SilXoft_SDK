@@ -1,0 +1,29 @@
+<input id ="objectid" class ='objectid' type='hidden' value ='<?= $this->modelidentifire['objid'] ?>'>
+<input id ="moduleidentifire" class ='moduleidentifire' type='hidden' value ='<?= $this->modelidentifire['module'] ?>'>
+<input id ="modelidentifire" class ='modelidentifire' type='hidden' value ='<?= $this->modelidentifire['controller'] ?>'>
+<div class="row-fluid">
+    <div>    
+        <div>   
+            <div><span>Имя принтформы</span></div>
+
+            <select class ='printformname' id ='printformname' title ='Имя печатной формы'>
+                <? foreach ($this->printforms as $key => $value) { ?>
+                    <option value ='<?= $key ?>' label ='<?= $value ?>'><?= $value ?></option>   
+                <? } ?>         
+            </select> </div>    
+        <div><span>Тема письма</span></div>
+        <input type ='text' class ='mailsubject' id ='mailsubject' title ='Тема письма' value ='<?= $this->first_form['name'] ?>'>
+    </div>
+</div>
+<div>
+    <div><span>Адрес клиента</span></div>
+    <input type ='text' class ='useremail' id ='useremail' title ='Почтовый адрес' value ='<?= $this->customeremails ?>'> 
+
+</div>
+<span>Текст письма</span> 
+<div>
+    <textarea class ="mailbody"  id ="mailbody" title ='Текст письма'> <?= $this->first_form['body'] ?></textarea> </div>
+<div>
+    <button id ="sendprintform" type="submit" value ='Отправить' title ='Отправить письмо' class ='btn-success sendprintform'>Отправить</button>
+    <button id ="cancelprintform" type="exit" value ='Отмена' title ='Отменить отправку' class ='btn-danger cancelprintform'>Отмена</button>
+</div>

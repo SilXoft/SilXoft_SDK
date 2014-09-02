@@ -1,0 +1,24 @@
+<?php if(false && $this->exception) { ?>
+    <div class="alert">
+        <h2><?php echo $this->message?$this->message:$this->exception->getMessage();//$this->exception->getMessage(); ?></h2>
+        <br />
+        <?php if($this->prev) { ?>
+            <h3><?php echo $this->prev->getMessage(); ?></h3>
+            <br />
+        <?php } ?>
+        <?php echo nl2br($this->exception->getTraceAsString()); ?>
+    </div>
+<?php } else { ?>
+    <div class="alert alert-error"><?=$this->translate('При обработке страницы произошли ошибки. Свяжитесь, пожалуйста, со службой поддержки.')?></div>
+    <a onclick='$(this).next(".details").show(); $(this).hide()' href='#'><?=$this->translate('Подробности...')?></a>
+    <div class='details' style='display:none;'>
+    <?php foreach($this->exceptions as $exception) { ?>
+        <div><strong onclick='$(this).next(".details").toggle();' style='cursor:pointer;'><?php echo $exception->getMessage(); ?></strong>
+        <p style='display:none' class='details'>
+            <?php echo nl2br($exception->getTraceAsString()); ?>
+        </p></div>
+    <?php } ?> </div>
+    <?php //print_r($this->params); ?>
+<?php } ?>
+
+

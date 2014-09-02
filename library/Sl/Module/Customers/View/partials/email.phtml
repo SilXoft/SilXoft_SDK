@@ -1,0 +1,87 @@
+<p>Добрый день <?php echo $this->pretty_name; ?>!</p>
+<p>Ваш постоянный код получателя грузов <?php echo $this->identifier; ?>.<br />Проверьте правильность Ваших регистрационных данных:</p>
+<table>
+    <tr>
+        <th style="text-align: left;">ФИО</th>
+        <td style="text-align: left;"><?php echo $this->pretty_name; ?></td>
+    </tr>
+    <tr>
+        <th style="text-align: left;">Email</th>
+        <td style="text-align: left;"><?php echo $this->email; ?></td>
+    </tr>
+    <tr>
+        <th style="text-align: left;">Номер телефона</th>
+        <td style="text-align: left;"><?php echo $this->phone; ?></td>
+    </tr>
+    <tr>
+        <th style="text-align: left;">Ближайший склад</th>
+        <td style="text-align: left;"><?php echo $this->stock; ?></td>
+    </tr>
+    <tr>
+        <th style="text-align: left;">Паспортные данные</th>
+        <td style="text-align: left;">
+            <?php if($this->customer->getPassport()) { ?>
+                Серия: <?php echo $this->customer->getPassport(); ?>
+            <?php } ?>
+            <?php if($this->customer->getPassportDate() != '0000-00-00') { ?>
+                <br />
+                Дата выдачи: <?php echo $this->customer->getPassportDate(); ?>
+            <?php } ?>
+        </td>
+    </tr>
+</table>
+<br />
+<p>Грузы, подписанные <strong style="font-size: 110%;">кодом</strong>, необходимо отправить на наш склад <a href="http://cargo80.com/contacts">http://cargo80.com/contacts</a>, и выслать краткую форму мини-пакинг листа вашему персональному, либо одному из наших менеджеров</p>
+<div>
+    Код:<br />
+    Общий вес:<br />
+    Кол-во мест:<br />
+    Стоимость груза:<br />
+    Описание:<br />
+    Срок доставки:<br />
+</div>
+<p>Любой поставщик отправит груз на наш склад без особого труда, курьерские службы работают четко, быстро и за минимальную стоимость.</p>
+<p>Обязательно получите подтверждение получения груза на наш склад!</p>
+<p>После поступления груза, мы оформляем упаковочный лист, в котором указываются все параметры груза и сроки доставки, включая таможенную очистку и страхование. По желанию, можно дополнительно оформить транспортный договор.</p> 
+<p>Все остальное сделает наша команда, опытных логистов.</p>
+<p>Когда груз поступит в пункт назначения, с вами обязательно свяжется наш экспедитор и согласует время и место выдачи груза.</p>
+<br />
+<p>При отправках <strong style="font-size: 110%;">обязательно</strong> помечайте все коробки, клиентским <strong style="font-size: 110%;">кодом</strong> получателя, который будет вам присвоен. Это ускорит отправку груза по назначению!</p>
+<p>Код присваивается <strong style="font-size: 110%;">получателю</strong>, а не отправителю!</p>
+<p>Коробки не подписанные кодом, на склад не принимаются!</p>
+<br />
+<div>
+    <p>
+        <strong>Москва, Россия</strong><br />
+        <a href="tel:+74959896833">+7 (495) 989-68-33</a> многоканальный<br />
+        Skype-Россия <a href="callto:vvkvvk10">vvkvvk10</a>
+    </p>
+    <p>
+        <strong>Киев, Украина</strong><br />
+        <a href="tel:+380443615364">+38 (044) 361-53-64</a> многоканальный<br />
+        Skype-Украина <a href="callto:m.kornev">m.kornev</a>
+    </p>
+    <p>
+        <strong>Шэньчжэнь, Китай</strong><br />
+        <a href="tel:+8613058108080">+86 130 5810-8080</a> Марина Skype <a href="callto:kulikovama">kulikovama</a><br />
+        <a href="tel:+8613510974017">+86 135 1097-4017</a> Надежда Skype <a href="callto:nadya_snow">nadya_snow</a>
+    </p>
+    <p>
+        <strong>Пекин, Китай</strong><br />
+        <a href="tel:+8618688782252">+86 186 8878-2252</a> Катя (Ms.Zhang) QQ <a href="#">1445220808</a><br />
+        <a href="tel:+8613510974017">+86 135 1097-4017</a> Надежда Skype <a href="callto:nadya_snow">nadya_snow</a>
+    </p>
+    <p>
+        <strong>Гуанчжоу, Китай</strong><br />
+        <a href="tel:+8618620547070">+86 186 2054-7070</a> Яна Skype <a href="callto:kalyan790">kalyan790</a><br />
+        <a href="tel:+8613510974017">+86 135 1097-4017</a> Надежда Skype <a href="callto:nadya_snow">nadya_snow</a>
+    </p>
+    <p>
+        <strong>Гонконг и другие страны</strong><br />
+        <a href="tel:+85298465000">+852 9846-5000</a> Михаил Skype <a href="callto:m.kornev">m.kornev</a><br />
+        <a href="tel:+85263249090">+852 6324-9090</a> Андрей Skype <a href="callto:andrey_zaec7">andrey_zaec7</a>
+    </p>
+</div>
+<br />
+<p>Обязательно ознакомьтесь с условиями доставки на нашем сайте!</p>
+<a href="www.cargo80.com">www.cargo80.com</a>

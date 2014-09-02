@@ -1,0 +1,36 @@
+<h3>Користувачi</h3>
+<button class="i_plus icon fr">Додати</button><br />
+
+<div class="clear"></div><br />
+<?php echo $this->form; ?>
+<table cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th>№</th>
+            <th>Iм'я</th>
+            <th>Email</th>
+            <th>Права</th>                            
+            <th>Редагувати</th>
+            <th>Видалити</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php if($this->users) { ?>
+          <?php $i = 0; foreach($this->users as $user) { $i++;?>
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $user->getName(); ?></td>
+                    <td><?php echo $user->getEmail(); ?></td>  
+                    <td><?php echo $this->roles[$user->getRoleId()]->getName(); ?></td>                                          
+                    <td><a href="<?php $id = $user->getId();
+echo $this->url(array('controller'=>'user','action'=>'edit','id' => $id ), null, FALSE);	
+?>"><img src="../images/edit.png"  height="16" width="16"/></a></td>
+ <td><a data-id ="<?php
+echo $id;	
+?>" class="delete" ><img src="../images/delete.png"  height="16" width="16"/></a></td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
+        <?php } ?>
+    </tbody>
+</table>
